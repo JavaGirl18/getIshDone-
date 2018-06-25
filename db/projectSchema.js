@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const {TasksModel} = require('./tasksSchema')
 
 const ProjectsSchema = new Schema({
-    owner:[UsersSchema],
     projectName: String,
     description: String,
     startDate: Date,
     endDate: Date,
-    tasks:[TasksSchema],
+    tasks:[TasksModel.schema],
     teamMembers:[{type:Schema.Types.ObjectId, ref: 'Users'}]
 })
 

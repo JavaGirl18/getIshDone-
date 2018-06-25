@@ -3,7 +3,11 @@ const Schema = mongoose.Schema
 
 
 const CommentSchema = new Schema ({
-    description: String
+    description: String,
+    date: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 
