@@ -15,6 +15,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/users/:id', usersRouter);
+app.use('/api/projects', projectsRouter);
+app.use('/api/projects/:id', projectsRouter);
+app.use('/api/projects/:id/tasks', taskRouter);
+app.use('/api/projects/:id/tasks/:id/comments', commentsRouter);
 
 module.exports = app;
