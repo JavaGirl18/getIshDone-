@@ -5,6 +5,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var projectsRouter = require('./routes/projects')
+var taskRouter = require('./routes/task')
+var commentsRouter = require('./routes/comments')
 
 var app = express();
 
@@ -12,14 +15,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(`${__dirname}/client/build`))
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/users/:id', usersRouter);
-app.use('/api/projects', projectsRouter);
-app.use('/api/projects/:id', projectsRouter);
-app.use('/api/projects/:id/tasks', taskRouter);
-app.use('/api/projects/:id/tasks/:id/comments', commentsRouter);
+app.use('/api/users/:userId/projects', projectsRouter);
+app.use('/api/users/:userId/projects/:projectId/tasks', taskRouter);
+app.use('/api/users/:userId/projects/:projectId/tasks/:tasksId/comments', commentsRouter);
 
+
+
+
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+  })
 module.exports = app;
