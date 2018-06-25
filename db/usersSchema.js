@@ -5,10 +5,10 @@ const UsersSchema = new Schema ({
     name: String,
     email: String,
     role: String,
-    projects:[ProjectsSchema]
+    projects:[ProjectSchema]
 })
 
 
-const UsersModel = mongoose.model('User', UsersSchema)
+const UsersModel = mongoose.model('Users', UsersSchema)
 
 module.exports = { UsersModel }  
