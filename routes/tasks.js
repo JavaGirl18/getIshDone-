@@ -47,4 +47,23 @@ router.post('/', (req, res) => {
   })
 })
 
+//update route
+router.put('/:id', async (req, res) => {
+  UsersModel.findById(req.params.userId).then((user) => {
+      console.log(user)
+ const project = user.projects.id(req.params.projectId)
+      const updatedTask = project.tasks.id(req.params.id)
+      updatedTask.taskName = req.body.taskName
+      updatedTask.description = req.body.description
+      updatedTask.startDate = req.body.startDate
+      updatedTask.dueDate = req.body.dueDate
+      updatedTask.status = req.body.status
+      return project.save().then((updatedTask) => {
+          res.send(updatedTask)
+      })
+
+  })
+
+})
+
 module.exports = router;

@@ -6,7 +6,7 @@ const TasksSchema = new Schema({
     taskName: String,
     description:String,
     status:String,
-    startDue: Date,
+    startDate: Date,
     dueDate: Date
     // comments:[commentSchema.schema]
 })
