@@ -1,26 +1,25 @@
 var express = require('express');
 
 const router = express.Router({ mergeParams: true })
-const User = require('../db/usersSchema')
-const Projects = require('../db/projectSchema')
+const {UsersModel} = require('../db/usersSchema')
+
 
 const { ProjectsModel } = require('../db/projectSchema.js')
 //get route
 router.get('/', function (req, res, next) {
-    User.findById(req.params.userId).then((user) => {
-        res.send({
-            user: user,
-            Projects: user.projects
-        })
+   UsersModel.findById(req.params.userId).then((user) => {
+        res.send(user.projects)
     })
 });
 
 //show route
 router.get('/:id', async (req, res) => {
 
-    ProjectsModel.findById(req.params.id)
-        .then((projects) => {
-            res.send(projects)
+    UsersModel.findById(req.params.userId)
+
+        .then((user) => {
+            const project = user.projects.id(req.params.id)
+            res.send(user.projects)
         })
 })
 
@@ -44,11 +43,11 @@ router.put('/:id', async (req, res) => {
         })
 
 //delete route
-router.put('/:id', async (req, res) => {
-            const userId = req.params.id
+router.delete('/:id', async (req, res) => {
+            const projectId = req.params.id
 
-            UsersModel = await UsersModel.findByIdAndRemove(userId)
-            res.send({ msg: 'user deleted' })
+            const deletedProject = await ProjectsModel.findByIdAndRemove(projectId)
+            res.send({ msg: 'project deleted' })
 
         })
 
