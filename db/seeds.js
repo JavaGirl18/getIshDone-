@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch((err) => {
         console.log('ERROR', err)
     })
-    
+
 
 const comment1 = new CommentModel({
     description: 'ERD approve by Jamie'
@@ -33,21 +33,24 @@ const comment3 = new CommentModel({
 
 
 const task1 = new TasksModel({
-    description: "create ERD",
+    taskName: 'create ERD',
+    description: "get approvals, use sketch",
     status: "In progress",
     startDate: new Date(2018, 9, 15),
     dueDate: new Date(2018, 9, 20),
     // comments: [comment1]
 })
 const task2 = new TasksModel({
-    description: "create wireframe",
+    taskName: 'make wire frames',
+    description: "use materal design",
     status: "Delayed",
     startDate: new Date(2018, 9, 15),
     dueDate: new Date(2018, 9, 15),
     // comments: [comment2]
 })
 const task3 = new TasksModel({
-    description: "conduct research",
+    taskName: 'conduct research',
+    description: "duns and bradstreet was awesome",
     status: "Complete",
     startDate: new Date(2018, 9, 15),
     dueDate: new Date(2018, 9, 20),

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 const commentSchema = require('./commentSchema')
 
 const TasksSchema = new Schema({
+    taskName: String,
     description:String,
     status:String,
     startDue: Date,

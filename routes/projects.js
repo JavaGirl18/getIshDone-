@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
 
         .then((user) => {
             const project = user.projects.id(req.params.id)
-            res.send(user.projects)
+            res.send(project)
         })
 })
 
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', (req, res) => {
     UsersModel.findById(req.params.userId).then((user) => {
         const newProject = new ProjectsModel(req.body)
-
+console.log(user)
         user.projects.push(newProject)
         user.save().then((user)=>{
             res.send(user.projects)
