@@ -2,6 +2,9 @@
   "name": "getishdone",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "9.7.0"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "dev": "concurrently \"nodemon bin/www\" \"cd ./client  && npm start \" ",
