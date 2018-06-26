@@ -66,4 +66,19 @@ router.put('/:id', async (req, res) => {
 
 })
 
+//delete route
+router.delete('/:id', async (req, res) => {
+  UsersModel.findById(req.params.userId).then((user) => {
+    const project = user.projects.id(req.params.projectId)
+      const task = project.tasks.id(req.params.id)
+
+      task.remove()
+      return user.save()
+  })
+      .then((project) => {
+          res.send(project)
+              .catch(err => console.log((err)))
+      })
+})
+
 module.exports = router;
