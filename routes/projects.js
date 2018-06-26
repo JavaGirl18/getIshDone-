@@ -24,11 +24,16 @@ router.get('/:id', async (req, res) => {
 })
 
 //create route
-router.post('/new', (req, res) => {
-    const newProject = new ProjectsModel(req.body)
-    newProject.save().then((project) => {
-        res.send(project)
+router.post('/', (req, res) => {
+    UsersModel.findById(req.params.userId).then((user) => {
+        const newProject = new ProjectsModel(req.body)
+
+        user.projects.push(newProject)
+        user.save().then((user)=>{
+            res.send(user.projects)
+        })
     })
+
 })
 
 
@@ -36,16 +41,16 @@ router.post('/new', (req, res) => {
 //update route
 router.put('/:id', async (req, res) => {
     UsersModel.findById(req.params.userId).then((user) => {
-     console.log(user)
+        console.log(user)
         const updatedProject = user.projects.id(req.params.id)
-        updatedProject.projectName=req.body.projectName
-        updatedProject.description=req.body.description
-        updatedProject.startDate=req.body.startDate
-        updatedProject.endDate=req.body.endDate
-          return user.save().then((updatedProject)=>{
-              res.send(updatedProject) 
-          })
-       
+        updatedProject.projectName = req.body.projectName
+        updatedProject.description = req.body.description
+        updatedProject.startDate = req.body.startDate
+        updatedProject.endDate = req.body.endDate
+        return user.save().then((updatedProject) => {
+            res.send(updatedProject)
+        })
+
     })
 
 })
