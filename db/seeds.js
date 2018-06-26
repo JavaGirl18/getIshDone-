@@ -18,6 +18,7 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch((err) => {
         console.log('ERROR', err)
     })
+    
 
 const comment1 = new CommentModel({
     description: 'ERD approve by Jamie'

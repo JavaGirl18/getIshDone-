@@ -8,10 +8,10 @@ const ProjectsModel = require('../db/projectSchema')
 const {TasksModel} = require('../db/tasksSchema.js')
 //get route
 router.get('/', function(req, res, next) {
-res.send({
-    userId: req.params.userId,
-    projectId: req.params.projectId
-})
+  ProjectsModel.findById(req.params.projectId).then((project)=>{
+const tasks = projects.tasks.id(req.params.id)
+  })
+res.send(projects.tasks)
 });
 
 
