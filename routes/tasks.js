@@ -2,16 +2,18 @@ var express = require('express');
 const router = express.Router({mergeParams: true})
 
 
-const UserModel = require('../db/usersSchema')
+const { UsersModel } = require('../db/usersSchema')
 const ProjectsModel = require('../db/projectSchema')
 
 const {TasksModel} = require('../db/tasksSchema.js')
 //get route
 router.get('/', function(req, res, next) {
-  ProjectsModel.findById(req.params.projectId).then((project)=>{
-const tasks = projects.tasks.id(req.params.id)
+  UsersModel.findById(req.params.userId)
+  .then((user)=>{
+    
+res.send(user.projects.id(req.params.projectId).tasks)
   })
-res.send(projects.tasks)
+
 });
 
 
