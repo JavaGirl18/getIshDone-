@@ -28,15 +28,16 @@ class Projects extends Component {
         }
 
     }
-    
-        // tasksList = res.data.tasks.map((task)=>{
-        //     <li>{task}</li>
-        // })
-        // this.setState({ taskList: tasksList })
-   
 
     render() {
-    
+        console.log("project", this.state.project);
+        if (this.state.project.tasks) {
+        var tasksList = this.state.project.tasks.map((task)=>
+            <li>{task.description}</li>
+        );
+    }
+
+    console.log("tasksList", tasksList)
 
         return (
             <div>
@@ -44,7 +45,8 @@ class Projects extends Component {
                 <h1>Project Name: {this.state.project.projectName}</h1>
                 <p>Description: {this.state.project.description}</p> 
                 <p>Start Date: {this.state.project.startDate}</p>
-                <p>End Date: {this.state.project.endDate}</p>        
+                <p>End Date: {this.state.project.endDate}</p>
+                <ul>{tasksList}</ul>        
             </div>
 
         );
