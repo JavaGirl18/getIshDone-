@@ -36,6 +36,7 @@ class ShowUser extends Component {
                 User Name: {userName} 
                 Email: {email}
                 Role: {role}
+               
                 <AllProjects 
                 projects = {this.state.users.projects}
                 users= {this.state.users}/>

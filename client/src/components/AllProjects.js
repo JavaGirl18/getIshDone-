@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
-
+import Projects from './Projects'
 class AllProjects extends Component {
     render() {
         
@@ -15,15 +15,16 @@ class AllProjects extends Component {
                 return (
                     <li key={index}>
                          <Link to={eachProject}>{projects.projectName}</Link>
-                         Description: {projects.description}
-                         {projects.startDate}
-                         {projects.endDate}
+                         {/* Description: {projects.description}
+                         Start Date: {projects.startDate}
+                        End Date: {projects.endDate} */}
                        
                     </li>
                 )
             })
         return (
             <div>
+                <Projects/>
                {allProjects}
             </div>
         );
