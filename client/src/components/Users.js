@@ -14,7 +14,7 @@ class Users extends Component {
                 <li key={index}>
                     <Link to={eachUser}>{user.name}</Link>
                     {user.email}
-                    
+                    {/* <Link to = {eachUser}>{user.name}</Link> */}
                 </li>
             )
         })
