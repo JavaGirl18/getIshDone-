@@ -21,15 +21,18 @@ class App extends Component {
       })
   }
   render() {
-    const HomePage = (props) => (
+    const HomePage = (props) => {
+      return(
       <Home users={this.state.users}{...props} />
-    )
-    const UsersPage = (props) =>(
+    )}
+    const UsersPage = (props) =>{
+      return(
 <Users users={this.state.users}{...props}/>
-    )
+    )}
     const ShowUserPage = (props)=>{
+      return(
       <ShowUser users={this.state.users}{...props}/>
-    }
+      )}
    return (
 <Router>
         
@@ -37,7 +40,7 @@ class App extends Component {
 
          <Route exact path='/' component={HomePage}></Route>
          <Route exact path='/users' render={UsersPage}></Route>
-         <Route exact path='/users' render={ShowUserPage}></Route>
+         <Route  path='/users/:id' render={ShowUserPage}></Route>
 
 
         </Switch>
