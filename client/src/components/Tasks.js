@@ -4,7 +4,7 @@ class Tasks extends Component {
     render() {
         return (
             <div>
-                
+                <h1>I am one task</h1>
             </div>
         );
     }

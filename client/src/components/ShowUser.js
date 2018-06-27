@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+import Projects from './Projects'
 import AllProjects from './AllProjects';
 
 class ShowUser extends Component {
@@ -29,6 +31,7 @@ class ShowUser extends Component {
         const email = this.state.users.email
         const role = this.state.users.role
         const projects = this.state.users.projects
+        // let eachProject = `/users/${users._id}/projects/${project._id}`
         // console.log(userName)
         return (
             <div>
@@ -36,11 +39,10 @@ class ShowUser extends Component {
                 User Name: {userName} 
                 Email: {email}
                 Role: {role}
-               
-                <AllProjects 
-                projects = {this.state.users.projects}
-                users= {this.state.users}/>
-                {/* {projects} */}
+               {/* <AllProjects 
+               users={this.state.users}
+            //    projects={this.state.users.projects}
+               /> */}
             </div>
         );
     }

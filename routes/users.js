@@ -10,7 +10,7 @@ res.send(users)
 });
 
 //show route
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
   
   UsersModel.findById(req.params.id)
   .then((users)=>{

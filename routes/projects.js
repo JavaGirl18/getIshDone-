@@ -14,9 +14,7 @@ router.get('/', function (req, res, next) {
 
 //show route
 router.get('/:id', async (req, res) => {
-
     UsersModel.findById(req.params.userId)
-
         .then((user) => {
             const project = user.projects.id(req.params.id)
             res.send(project)

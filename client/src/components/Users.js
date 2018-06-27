@@ -15,18 +15,7 @@ class Users extends Component {
                 </li>
             )
         })
-        // const allUsers = usersList.map((user, index)=>{
-        //     let eachUser = `/users/${index}`
-        //     console.log(eachUser)
-        //     return 
-        //     (
-        //         <li key={index}>
-        //             <Link to={eachUser}>{user.name}</Link>
-        //             {user.email}
-        //             {/* <Link to = {eachUser}>{user.name}</Link> */}
-        //         </li>
-        //     )
-        // })
+       
         console.log(allUsers)
 
 

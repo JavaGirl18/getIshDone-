@@ -7,7 +7,8 @@ import Home from './components/Home'
 import Users from './components/Users'
 import axios from 'axios'
 import ShowUser from './components/ShowUser'
-import Projects from './components/Tasks'
+import Projects from './components/Projects'
+import Task from './components/Tasks'
 class App extends Component {
   state = {
     users: []
@@ -23,37 +24,47 @@ class App extends Component {
   }
   render() {
     const HomePage = (props) => {
-      return(
-      <Home users={this.state.users}{...props} />
-    )}
-    const UsersPage = (props) =>{
-      return(
-<Users users={this.state.users}{...props}/>
-    )}
-    const ShowUserPage = (props)=>{
-      return(
-      <ShowUser users={this.state.users}{...props}/>
-      )}
-      const ProjectsPage = (props)=>{
-        return(
-        <Projects users={this.state.users}{...props}/>
-        )}
-   return (
-<Router>
-        
+      return (
+        <Home users={this.state.users}{...props} />
+      )
+    }
+    const UsersPage = (props) => {
+      return (
+        <Users users={this.state.users}{...props} />
+      )
+    }
+    const ShowUserPage = (props) => {
+      return (
+        <ShowUser users={this.state.users}{...props} />
+      )
+    }
+    const ProjectsPage = (props) => {
+      return (
+        <Projects users={this.state.users} {...props} />
+      )
+    }
+    // const TaskPage = (props) => {
+    //   return (
+    //     // <Task users={this.state.users} />
+    //   // )
+    // // }
+    return (
+      <Router>
+
         <Switch>
 
-         <Route exact path='/' component={HomePage}></Route>
-         <Route exact path='/users' render={UsersPage}></Route>
-         <Route  path='/users/:id' render={ShowUserPage}></Route>
-         <Route  path='/users/:id/projects/:projectId' render={ProjectsPage}></Route>
-
+          <Route exact path='/' component={HomePage}></Route>
+          <Route exact path='/users' render={UsersPage}></Route>
+          <Route exact path='/users/:id' render={ShowUserPage}></Route>
+          <Route exact path='/users/:userId/projects/:id' render={ProjectsPage}></Route>
+          {/* <Route exact path='/users/:userId/projects/:projectId/tasks/:id' render={TaskPage}></Route> */}
+          
 
         </Switch>
 
-  
-    </Router>
-   )
+
+      </Router>
+    )
   }
 }
 

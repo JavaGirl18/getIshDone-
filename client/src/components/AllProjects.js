@@ -5,12 +5,12 @@ class AllProjects extends Component {
     render() {
         
             const projectsList = this.props.users.projects || []
-            console.log(this.props.users.projects)
+            console.log(projectsList)
             console.log('project list', projectsList)
             // console.log("this is the project list", projectsList)
             const allProjects = projectsList.map((projects, index) => {
                 
-                let eachProject = `/users/${this.props.users._id}/projects`
+                let eachProject = `/users/${this.props.users._id}/projects/${projects._id}`
             //    console.log(eachProjects)
                 return (
                     <li key={index}>
@@ -24,7 +24,7 @@ class AllProjects extends Component {
             })
         return (
             <div>
-                <Projects/>
+            {/* <Projects projects ={this.state.users.projects}/> */}
                {allProjects}
             </div>
         );
