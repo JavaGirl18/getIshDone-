@@ -16,7 +16,7 @@ class Users extends Component {
             )
         })
        
-        console.log(allUsers)
+        
 
 
         return (

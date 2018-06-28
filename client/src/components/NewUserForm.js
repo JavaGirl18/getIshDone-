@@ -23,6 +23,8 @@ class NewUserForm extends Component {
         this
             .props
             .addNewUserToUsersList(this.state.newUser)
+                this.props.history.push('/users')
+            
     }
 
 
@@ -31,7 +33,7 @@ class NewUserForm extends Component {
             <div>
                 <form onSubmit={this.addNewUser}>
                     <div><input
-                        name="userName"
+                        name="name"
                         type="text"
                         placeholder="Name"
                         onChange={this.handleNewUserChange} /></div>
@@ -46,6 +48,13 @@ class NewUserForm extends Component {
                         placeholder="What's your role?"
                         onChange={this.handleNewUserChange} /></div>
                     <div><input type="submit" value="Create New User" /></div>
+                    {/* <div><input
+                        name="role"
+                        type="text"
+                        placeholder="What's your role?"
+                        onChange={this.handleNewUserChange} /></div>
+                    <div><input type="submit" value="Create New User" /></div> */}
+                    
                 </form>
             </div>
         )
