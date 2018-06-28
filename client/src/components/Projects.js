@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tasks from './Tasks'
 import axios from 'axios'
+import AllTasks from './AllTasks';
 
 class Projects extends Component {
     state = {
@@ -30,14 +31,16 @@ class Projects extends Component {
     }
 
     render() {
-        console.log("project", this.state.project);
-        if (this.state.project.tasks) {
-        var tasksList = this.state.project.tasks.map((task)=>
-            <li>{task.description}</li>
-        );
-    }
+    //     console.log("project", this.state.project);
+    //     if (this.state.project.tasks) {
+    //     var tasksList = this.state.project.tasks.map((task,index)=>
+    //     // const eachTask= `/users/${this.props.users._id}/projects/${projects._id}`
+    //         <li key={index}>{task.taskName}</li>
+            
+    //     );
+    // }
 
-    console.log("tasksList", tasksList)
+    // console.log("tasksList", tasksList)
 
         return (
             <div>
@@ -46,7 +49,8 @@ class Projects extends Component {
                 <p>Description: {this.state.project.description}</p> 
                 <p>Start Date: {this.state.project.startDate}</p>
                 <p>End Date: {this.state.project.endDate}</p>
-                <ul>{tasksList}</ul>        
+                <AllTasks project = {this.state.project}/>
+                {/* <ul>{tasksList}</ul>         */}
             </div>
 
         );
