@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 class Home extends Component {
     state = {
@@ -53,10 +54,11 @@ class Home extends Component {
                         name="password"
                         type="password"
                         onChange={this.handleFindUser} /></div>
-                    <div><input type="submit" value="Create New User" /></div>
+                    <div><input type="submit" value="Log In" /></div>
                    
                     
                 </form>
+                <Link to ='users/new'> <button>Create New User</button></Link>
             </div>
         );
     }

@@ -33,6 +33,19 @@ class App extends Component {
     })
   }
 
+  deleteUser = (userId) => {
+   
+    //make a delete request to our copy of the api using the params to identify specific idea
+    axios.delete(`/api/users/${userId}`).then((res) => {
+        //setstate
+        this.setState({
+            //data matching user will be removed from the state.user
+            users: res.data
+          
+        })
+    })
+}
+
   render() {
     const HomePage = (props) => {
       return (
@@ -46,7 +59,7 @@ class App extends Component {
     }
     const ShowUserPage = (props) => {
       return (
-        <ShowUser users={this.state.users}{...props} />
+        <ShowUser users={this.state.users}{...props} const deleteUser={this.deleteUser} />
       )
     }
     const ProjectsPage = (props) => {

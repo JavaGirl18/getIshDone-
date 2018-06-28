@@ -38,13 +38,15 @@ class ShowUser extends Component {
                 <h1>I'm one user</h1>
                 User Name: {userName} 
                 Email: {email}
-                Role: {role}
+                Role: {role} 
+ 
                <AllProjects 
-               users={this.state.users}
-            //    projects={this.state.users.projects}
-               />
+               users={this.state.users}/>
+               <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button>
+              
             </div>
         );
+       
     }
 }
 

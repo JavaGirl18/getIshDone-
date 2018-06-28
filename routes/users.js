@@ -36,11 +36,14 @@ router.put('/:id', async (req,res)=>{
 })
 
 //delete route
-router.delete('/:id', async (req,res)=>{
+router.delete('/:id', (req,res)=>{
   const userId = req.params.id
-  
- const deletedUser = await UsersModel.findByIdAndRemove(userId)
-  res.send({msg: 'user deleted'})
+   UsersModel.findByIdAndRemove(userId).then(()=>{
+      res.send({msg: 'user deleted'})
+   })
+ .catch((err)=>{
+   console.log(err)
+ })
 
 })
 
