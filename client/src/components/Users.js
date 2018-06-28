@@ -23,6 +23,7 @@ class Users extends Component {
             <div>
                 <h1>I am Users</h1>
                 {allUsers}
+              <Link to ='users/new'> <button>Create New User</button></Link>
             </div>
         );
     }
