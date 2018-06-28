@@ -37,7 +37,7 @@ class Projects extends Component {
           const projects = this
           console.log('i a this',this)
             var tasksList = this.state.project.tasks.map((task, index) => {
-                const eachTask = `/users/${this.props.users._id}/projects/${projects._id}/tasks/${task._id}`
+                const eachTask = `/users/${this.props.match.params.userId}/projects/${projects._id}/tasks/${task._id}`
                 return (
                    <ul>
                         <Link key ={index} to={eachTask}>{task.taskName}</Link>
@@ -58,6 +58,7 @@ class Projects extends Component {
                 <p>End Date: {this.state.project.endDate}</p>
                 {/* <AllTasks project={this.state.project} /> */}
                <h3>Tasks awaiting completion: <p>{tasksList}</p></h3> 
+               <Link to ={`/users/${this.props.match.params.userId}/projects/new`}> <button>Create New Project</button></Link>
             </div>
 
         );

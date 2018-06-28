@@ -25,6 +25,7 @@ class ShowUser extends Component {
           })
         }
     }
+    
     render() {
         console.log(this.state)
         const userName = this.state.users.name

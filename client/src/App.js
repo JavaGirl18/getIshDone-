@@ -10,6 +10,7 @@ import ShowUser from './components/ShowUser'
 import Projects from './components/Projects'
 import Task from './components/Tasks'
 import NewUser from './components/NewUserForm'
+import NewProject from './components/ProjectForm'
 class App extends Component {
 
   state = {
@@ -33,6 +34,18 @@ class App extends Component {
     })
   }
 
+addNewProjectToProjectsList = (newProject, userId)=>{
+  // const userId= this.state.params.id
+  axios.post(`/api/users/${userId}/projects`, newProject).then((res)=>{
+    
+    // const projectList = [...this.state.users.projects]
+    // console.log(this.state.users.projects)
+    // projectList.push(res.data)
+    console.log(res)
+    this.setState({projects: res.data.users.projects})
+  })
+}  
+
   deleteUser = (userId) => {
    
     //make a delete request to our copy of the api using the params to identify specific idea
@@ -45,6 +58,8 @@ class App extends Component {
         })
     })
 }
+
+
 
   render() {
     const HomePage = (props) => {
@@ -77,6 +92,11 @@ class App extends Component {
         <NewUser addNewUserToUsersList={this.addNewUserToUsersList}{...props} />
       )
     }
+    const NewProjectsPage = (props) => {
+      return (
+        <NewProject addNewProjectToProjectsList={this.addNewProjectToProjectsList}{...props} />
+      )
+    }
     return (
       <Router>
 
@@ -86,6 +106,7 @@ class App extends Component {
           <Route exact path='/users' render={UsersPage}></Route>
           <Route exact path='/users/new' render={NewUserPage}></Route>
           <Route exact path='/users/:id' render={ShowUserPage}></Route>
+          <Route exact path='/users/:userId/projects/new' render={NewProjectsPage}></Route>
           <Route exact path='/users/:userId/projects/:id' render={ProjectsPage}></Route>
           <Route exact path='/users/:userId/projects/:projectId/tasks/:id' render={TaskPage}></Route>
 
