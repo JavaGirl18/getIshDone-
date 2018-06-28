@@ -43,11 +43,11 @@ class App extends Component {
         <Projects users={this.state.users} {...props} />
       )
     }
-    // const TaskPage = (props) => {
-    //   return (
-    //     // <Task users={this.state.users} />
-    //   // )
-    // // }
+    const TaskPage = (props) => {
+      return (
+        <Task users={this.state.users} />
+      )
+    }
     return (
       <Router>
 
@@ -57,7 +57,7 @@ class App extends Component {
           <Route exact path='/users' render={UsersPage}></Route>
           <Route exact path='/users/:id' render={ShowUserPage}></Route>
           <Route exact path='/users/:userId/projects/:id' render={ProjectsPage}></Route>
-          {/* <Route exact path='/users/:userId/projects/:projectId/tasks/:id' render={TaskPage}></Route> */}
+          <Route exact path='/users/:userId/projects/:projectId/tasks/:id' render={TaskPage}></Route>
           
 
         </Switch>

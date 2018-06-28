@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Tasks from './Tasks'
 import axios from 'axios'
-import AllTasks from './AllTasks';
+
+import { Link } from 'react-router-dom'
 
 class Projects extends Component {
     state = {
@@ -9,7 +10,7 @@ class Projects extends Component {
     }
 
     componentDidMount() {
-        
+
         if (this.props.match.params) {
             console.log("PROPS", this.props)
             const userId = this.props.match.params.userId
@@ -20,7 +21,7 @@ class Projects extends Component {
                 .then(res => {
                     console.log("response from api", res.data)
                     this.setState({ project: res.data })
-                    // console.log("project", this.state.project);
+                  
                 })
                 .catch((err) => {
                     console.error(err)
@@ -31,30 +32,37 @@ class Projects extends Component {
     }
 
     render() {
-    //     console.log("project", this.state.project);
-    //     if (this.state.project.tasks) {
-    //     var tasksList = this.state.project.tasks.map((task,index)=>
-    //     // const eachTask= `/users/${this.props.users._id}/projects/${projects._id}`
-    //         <li key={index}>{task.taskName}</li>
-            
-    //     );
-    // }
+        console.log("project", this.state.project);
+        if (this.state.project.tasks) {
+          const projects = this
+          console.log('i a this',this)
+            var tasksList = this.state.project.tasks.map((task, index) => {
+                const eachTask = `/users/${this.props.users._id}/projects/${projects._id}/tasks/${task._id}`
+                return (
+                   <ul>
+                        <Link key ={index} to={eachTask}>{task.taskName}</Link>
+                        {/* <li key={index}>{task.description}</li> */}
+                  </ul>
+                )
 
-    // console.log("tasksList", tasksList)
+            })
+        }
+      
 
         return (
             <div>
-    
+
                 <h1>Project Name: {this.state.project.projectName}</h1>
-                <p>Description: {this.state.project.description}</p> 
+                <p>Description: {this.state.project.description}</p>
                 <p>Start Date: {this.state.project.startDate}</p>
                 <p>End Date: {this.state.project.endDate}</p>
-                <AllTasks project = {this.state.project}/>
-                {/* <ul>{tasksList}</ul>         */}
+                {/* <AllTasks project={this.state.project} /> */}
+               <h3>Tasks awaiting completion: <p>{tasksList}</p></h3> 
             </div>
 
         );
     }
 }
+
 
 export default Projects;
