@@ -16,6 +16,7 @@ class App extends Component {
   state = {
     users: []
   }
+
   componentDidMount() {
     axios.get('/api/users').then((res) => {
       this.setState({ users: res.data })
@@ -35,14 +36,7 @@ class App extends Component {
   }
 
 addNewProjectToProjectsList = (newProject, userId)=>{
-  // const userId= this.state.params.id
   axios.post(`/api/users/${userId}/projects`, newProject).then((res)=>{
-    
-    // const projectList = [...this.state.users.projects]
-    // console.log(this.state.users.projects)
-    // projectList.push(res.data)
-    console.log(res)
-    this.setState({projects: res.data.users.projects})
   })
 }  
 

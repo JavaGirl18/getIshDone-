@@ -19,11 +19,12 @@ class ProjectForm extends Component {
 
     addNewProject = (event) => {
         event.preventDefault()
+        const userId = this.props.match.params.userId
 
         this
             .props
-            .addNewProjectToProjectsList(this.state.newProject, this.props.match.params.id)
-                // this.props.history.push(`/users/${userId}/projects`)
+            .addNewProjectToProjectsList(this.state.newProject, userId)
+                this.props.history.push(`/users/${userId}`)
             
     }
 
