@@ -63,7 +63,7 @@ const project1 = new ProjectsModel({
     description: 'complete project 3',
     startDate: new Date(2018, 6, 25),
     endDate: new Date(2018, 7, 02),
-    tasks: [task1],
+    tasks: [task1, task2],
 
 })
 
@@ -72,7 +72,7 @@ const project2 = new ProjectsModel({
     description: 'create a PM app',
     startDate: new Date(2018, 9, 15),
     endDate: new Date(2018, 10, 15),
-    tasks: [task2]
+    tasks: [task2, task3]
 
 })
 
@@ -81,7 +81,7 @@ const project3 = new ProjectsModel({
     description: 'create a chat bot',
     startDate: new Date(2018, 8, 15),
     endDate: new Date(2018, 9, 15),
-    tasks: [task3]
+    tasks: [task3, task1]
 
 })
 
@@ -91,21 +91,21 @@ const user1 = new UsersModel({
     name: 'Valencia Cooper',
     email: 'valenciacooper89@gmail.com',
     role: 'Project Owner',
-    projects: [project1]
+    projects: [project1, project2]
 })
 
 const user2 = new UsersModel({
     name: 'Ayana Redd',
     email: 'aredd@gmail.com',
     role: 'team member',
-    projects: [project2]
+    projects: [project2, project3]
 })
 
 const user3 = new UsersModel({
     name: 'Jada Pinkett-Smith',
     email: 'Jada@gmail.com',
     role: 'team member',
-    projects: [project3]
+    projects: [project3, project1]
 })
 
 const projects = [project1, project2, project3]
