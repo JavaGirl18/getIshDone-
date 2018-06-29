@@ -55,7 +55,7 @@ router.put('/:id', async (req, res) => {
 
 
 //delete route
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',(req, res) => {
     UsersModel.findById(req.params.userId).then((user) => {
 
         const project = user.projects.id(req.params.id)

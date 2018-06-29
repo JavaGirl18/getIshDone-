@@ -35,11 +35,13 @@ class Projects extends Component {
         console.log("project", this.state.project);
         if (this.state.project.tasks) {
           const projects = this
+        //   projectId = this.props.match.params.id
           console.log('i a this',this)
             var tasksList = this.state.project.tasks.map((task, index) => {
                 const eachTask = `/users/${this.props.match.params.userId}/projects/${projects._id}/tasks/${task._id}`
                 return (
                    <ul>
+                       
                         <Link key ={index} to={eachTask}>{task.taskName}</Link>
                         {/* <li key={index}>{task.description}</li> */}
                   </ul>

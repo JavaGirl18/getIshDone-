@@ -11,6 +11,7 @@ import Projects from './components/Projects'
 import Task from './components/Tasks'
 import NewUser from './components/NewUserForm'
 import NewProject from './components/ProjectForm'
+import AllProjects from './components/AllProjects'
 class App extends Component {
 
   state = {
@@ -40,6 +41,8 @@ addNewProjectToProjectsList = (newProject, userId)=>{
   })
 }  
 
+
+
   deleteUser = (userId) => {
    
     //make a delete request to our copy of the api using the params to identify specific idea
@@ -68,7 +71,7 @@ addNewProjectToProjectsList = (newProject, userId)=>{
     }
     const ShowUserPage = (props) => {
       return (
-        <ShowUser users={this.state.users}{...props} const deleteUser={this.deleteUser} />
+        <ShowUser users={this.state.users}{...props}  deleteUser={this.deleteUser}/>
       )
     }
     const ProjectsPage = (props) => {
@@ -91,6 +94,7 @@ addNewProjectToProjectsList = (newProject, userId)=>{
         <NewProject addNewProjectToProjectsList={this.addNewProjectToProjectsList}{...props} />
       )
     }
+   
     return (
       <Router>
 

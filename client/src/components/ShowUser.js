@@ -3,12 +3,29 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Projects from './Projects'
 import AllProjects from './AllProjects';
+import styled from 'styled-components'
+
+
+// const Users = styled.div`
+// background-color:grey;
+// button {
+//     background: red;
+//     border-radius: 10px;
+//     font-size: 1.3rem;
+//     color: black;
+//   }`
 
 class ShowUser extends Component {
     state = {
         users: {}
       }
 
+      deleteProject = (projectId) =>{
+          const userId = this.props.match.params.id
+          console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
+        axios.delete(`/api/users/${userId}/projects/${projectId}`).then((res)=>{
+        })
+      }
       componentDidMount() {
           console.log(this.props.match.params.id)
       if (this.props.match.params) {
@@ -40,11 +57,12 @@ class ShowUser extends Component {
                 User Name: {userName} 
                 Email: {email}
                 Role: {role} 
- 
+
                <AllProjects 
-               users={this.state.users}/>
-               <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button>
-              
+               users={this.state.users}
+               deleteProject={this.deleteProject}/> 
+               {/* <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button> */}
+            
             </div>
         );
        

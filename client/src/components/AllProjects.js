@@ -9,17 +9,20 @@ class AllProjects extends Component {
             console.log('project list', projectsList)
             // console.log("this is the project list", projectsList)
             const allProjects = projectsList.map((projects, index) => {
-                
+               
                 let eachProject = `/users/${this.props.users._id}/projects/${projects._id}`
-            //    console.log(eachProjects)
+               console.log(this.props.users.projects[index]._id)
                 return (
+                    <div>
+                    
+                  
                     <li key={index}>
+                    
                          <Link to={eachProject}>{projects.projectName}</Link>
-                         {/* Description: {projects.description}
-                         Start Date: {projects.startDate}
-                        End Date: {projects.endDate} */}
                        
                     </li>
+                   <button onClick={()=> this.props.deleteProject(this.props.users.projects[index]._id)}>Delete Project</button>
+                     </div>
                 )
             })
         return (
