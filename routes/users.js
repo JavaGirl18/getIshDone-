@@ -38,6 +38,8 @@ router.put('/:id', async (req,res)=>{
 //delete route
 router.delete('/:id', (req,res)=>{
   const userId = req.params.id
+  console.log(userId)
+  // res.send('a string or whatever')
    UsersModel.findByIdAndRemove(userId).then(()=>{
       res.send({msg: 'user deleted'})
    })

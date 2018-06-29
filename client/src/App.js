@@ -19,6 +19,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getUsers()
+  }
+
+  getUsers = () => {
     axios.get('/api/users').then((res) => {
       this.setState({ users: res.data })
     })
@@ -27,7 +31,6 @@ class App extends Component {
         console.error(err)
       })
   }
-
   addNewUserToUsersList = (newUser) => {
     axios.post('/api/users', newUser).then((res) => {
       const usersList = [...this.state.users]
@@ -38,6 +41,7 @@ class App extends Component {
 
 addNewProjectToProjectsList = (newProject, userId)=>{
   axios.post(`/api/users/${userId}/projects`, newProject).then((res)=>{
+    this.getUsers
   })
 }  
 
@@ -81,7 +85,7 @@ addNewProjectToProjectsList = (newProject, userId)=>{
     }
     const TaskPage = (props) => {
       return (
-        <Task users={this.state.users} />
+        <Task users={this.state.users}{...props} />
       )
     }
     const NewUserPage = (props) => {

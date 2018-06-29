@@ -9,11 +9,15 @@ class Users extends Component {
             let eachUser = `/users/${users._id}`
             console.log(eachUser)
             return (
+                <div>
                 <li key={index}>
                     <Link to={eachUser}>
                     {users.email}</Link>
                 </li>
+               
+                 </div>
             )
+           
         })
        
         
