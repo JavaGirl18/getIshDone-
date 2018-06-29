@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
+import {Redirect} from 'react-router-dom'
 
 
 const HomePage = styled.div`
@@ -12,9 +13,16 @@ class Home extends Component {
         loggedUser: {
             email:'',
             password:''
-        }
+        },
+        loggedInstate: false,
+        userId:''
+
     }
     
+
+// 
+
+
     handleFindUser = (event) => {
         const attributeName = event.target.name
         const attributeValue = event.target.value
@@ -27,6 +35,8 @@ class Home extends Component {
         this.setState({ loggedUser })
 
     }
+
+
     findUserByEmail = (event) =>{
         event.preventDefault()
         const allUsers = this.props.users || []
@@ -35,15 +45,23 @@ class Home extends Component {
         })
         if(userToFind){
             console.log(userToFind)
+            this.setState({loggedInstate: true, userId: userToFind._id})
         }
         else{
             console.log("didn't find user")
+          alert('User not found, please create an account')
         }
         
 
     }
     render() {
-        console.log(this.props)
+      if(this.state.loggedInstate){
+        return <Redirect to={`/users/${this.state.userId}`}/>
+      }
+
+
+
+
         return (
             <HomePage>
                 <div>

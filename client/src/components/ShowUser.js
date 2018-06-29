@@ -18,7 +18,8 @@ const UpdateFormStyle = styled.form`
 
 class ShowUser extends Component {
     state = {
-        users: {}
+        users: {},
+        editUser: false
     }
 
     deleteProject = (projectId) => {
@@ -51,12 +52,12 @@ class ShowUser extends Component {
     }
 
     handleUpdate = (event) => {
-        const copyOfState = {...this.state.users}
+        const copyOfState = { ...this.state.users }
         const attributeName = event.target.name
         const attributeValue = event.target.value
         copyOfState[attributeName] = attributeValue
-       
-        this.setState({users:copyOfState})
+
+        this.setState({ users: copyOfState })
     }
 
 
@@ -72,7 +73,10 @@ class ShowUser extends Component {
 
     }
 
-
+    toggleButton = () => {
+        const canEdit = !this.state.editUser
+        this.setState({ editUser: canEdit })
+    }
 
     componentDidMount() {
         console.log(this.props.match.params.id)
@@ -89,9 +93,37 @@ class ShowUser extends Component {
         const userName = this.state.users.name
         const email = this.state.users.email
         const role = this.state.users.role
-        const projects = this.state.users.projects
-        // let eachProject = `/users/${users._id}/projects/${project._id}`
-        // console.log(userName)
+
+        const updateForm = (<form onSubmit={this.submitUpdate}>
+            <input
+                type="text"
+                name="name"
+                maxLength="8"
+                placeholder="name"
+                value={this.state.users.name}
+                onChange={this.handleUpdate} />
+            <input type="submit" value="save" />
+            <input
+                type="text"
+                name="email"
+                maxLength="8"
+                placeholder="email"
+                value={this.state.users.email}
+                onChange={this.handleUpdate} />
+            <input type="submit" value="save" />
+            <input
+                type="text"
+                name="role"
+                maxLength="8"
+                placeholder="role"
+                value={this.state.users.role}
+                onChange={this.handleUpdate} />
+            <input type="submit" value="save" />
+
+        </form>)
+
+
+
         return (
             <div>
                 <h1>I'm one user</h1>
@@ -100,33 +132,6 @@ class ShowUser extends Component {
                 Role: {role}
 
 
-                <form onSubmit={this.submitUpdate}>
-                    <input
-                        type="text"
-                        name="name"
-                        maxLength="8"
-                        placeholder="name"
-                        value={this.state.users.name}
-                        onChange={this.handleUpdate} />
-                    <input type="submit" value="save" />
-                    <input
-                        type="text"
-                        name="email"
-                        maxLength="8"
-                        placeholder="email"
-                        value={this.state.users.email}
-                        onChange={this.handleUpdate} />
-                    <input type="submit" value="save" />
-                    <input
-                        type="text"
-                        name="role"
-                        maxLength="8"
-                        placeholder="role"
-                        value={this.state.users.role}
-                        onChange={this.handleUpdate} />
-                    <input type="submit" value="save" />
-
-                </form>
 
                 <AllProjects
                     users={this.state.users}
@@ -134,7 +139,9 @@ class ShowUser extends Component {
                 {/* <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button> */}
                 <Link to={`/users/${this.props.match.params.id}/projects/new`}> <button>Create New Project</button></Link>
                 <button onClick={this.deleteUser}>Delete User</button>
+                <button onClick={this.toggleButton}>Update Profile</button>
 
+                {this.state.editUser? updateForm: null}
 
             </div>
 
