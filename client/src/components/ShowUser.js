@@ -34,21 +34,12 @@ class ShowUser extends Component {
         const userId = this.props.match.params.id
         //make a delete request to our copy of the api using the params to identify specific idea
         axios.delete(`/api/users/${userId}`).then((res) => {
-         this.getUser(userId)
+            this.getUser(userId)
 
-            })
-    
+        })
+
     }
 
-    updateUser = () => {
-        const userId = this.props.match.params.id
-    //use .find to match 
-        const updatedUser= this.state.users.find(user=> user._id === userId)
-        //make patch request to modify the selected params' data held in our db
-        axios.patch(`/api/users/${userId}`, updatedUser).then((res) => {
-            this.getUser(userId)
-          })
-      }
 
     getUser = (userId) => {
         axios
@@ -59,7 +50,28 @@ class ShowUser extends Component {
             })
     }
 
-    
+    handleUpdate = (event) => {
+        const copyOfState = {...this.state.users}
+        const attributeName = event.target.name
+        const attributeValue = event.target.value
+        copyOfState[attributeName] = attributeValue
+       
+        this.setState({users:copyOfState})
+    }
+
+
+    submitUpdate = (event) => {
+        event.preventDefault()
+        const updatedUser = this.state.users
+        const userId = this.props.match.params.id
+        console.log(updatedUser)
+        axios.put(`/api/users/${userId}`, updatedUser).then(() => {
+            window.location.reload()
+
+        })
+
+    }
+
 
 
     componentDidMount() {
@@ -88,22 +100,33 @@ class ShowUser extends Component {
                 Role: {role}
 
 
-     {/* <UpdateFormStyle>
-    
-    <input onChange={(event)=>this.handleChange(event.user._id)}
-        type="text"
-        name="name"
-        value={user.name}
-        onBlur={() => this.updateUser(user._id)}
-    />
-    <textarea
-        name="description"
-        value={user.description}
-        onChange={(event)=>this.handleChange(event,user._id)}
-        onBlur={() => this.updateUser(user._id)}
-    />
+                <form onSubmit={this.submitUpdate}>
+                    <input
+                        type="text"
+                        name="name"
+                        maxLength="8"
+                        placeholder="name"
+                        value={this.state.users.name}
+                        onChange={this.handleUpdate} />
+                    <input type="submit" value="save" />
+                    <input
+                        type="text"
+                        name="email"
+                        maxLength="8"
+                        placeholder="email"
+                        value={this.state.users.email}
+                        onChange={this.handleUpdate} />
+                    <input type="submit" value="save" />
+                    <input
+                        type="text"
+                        name="role"
+                        maxLength="8"
+                        placeholder="role"
+                        value={this.state.users.role}
+                        onChange={this.handleUpdate} />
+                    <input type="submit" value="save" />
 
-</UpdateFormStyle> */}
+                </form>
 
                 <AllProjects
                     users={this.state.users}
@@ -112,12 +135,12 @@ class ShowUser extends Component {
                 <Link to={`/users/${this.props.match.params.id}/projects/new`}> <button>Create New Project</button></Link>
                 <button onClick={this.deleteUser}>Delete User</button>
 
-           
+
             </div>
-           
 
 
-      
+
+
         );
 
     }
