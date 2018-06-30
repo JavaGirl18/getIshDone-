@@ -5,16 +5,13 @@ import Projects from './Projects'
 import AllProjects from './AllProjects';
 import styled from 'styled-components'
 
-const UpdateFormStyle = styled.form`
-`
-// const Users = styled.div`
-// background-color:grey;
-// button {
-//     background: red;
-//     border-radius: 10px;
-//     font-size: 1.3rem;
-//     color: black;
-//   }`
+const Show = styled.div`
+
+body{
+   height:100vh;
+   width:auto;
+  
+  }`
 
 class ShowUser extends Component {
     state = {
@@ -78,6 +75,28 @@ class ShowUser extends Component {
         this.setState({ editUser: canEdit })
     }
 
+    // handleNewTaskChange = (event) => {
+    //     const attributeName = event.target.name
+    //     const attributeValue = event.target.value
+
+    //     const newUser = {
+    //         ...this.state.newUser
+    //     }
+    //     newUser[attributeName] = attributeValue
+
+    //     this.setState({ newUser })
+    // };
+
+    addNewUser = (event) => {
+        event.preventDefault()
+
+        this
+            .props
+            .addNewUserToUsersList(this.state.newUser)
+                this.props.history.push('/users')
+            
+    }
+
     componentDidMount() {
         console.log(this.props.match.params.id)
         if (this.props.match.params) {
@@ -125,7 +144,7 @@ class ShowUser extends Component {
 
 
         return (
-            <div>
+            <Show>
                 <h1>I'm one user</h1>
                 User Name: {userName}
                 Email: {email}
@@ -143,7 +162,7 @@ class ShowUser extends Component {
 
                 {this.state.editUser? updateForm: null}
 
-            </div>
+            </Show>
 
 
 

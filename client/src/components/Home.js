@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import {Redirect} from 'react-router-dom'
+import { Button, Form} from 'reactstrap'
+import { Alert } from 'reactstrap'
+
 
 
 const HomePage = styled.div`
-background-color:grey;
-background-size:cover`
+
+  
+`
 class Home extends Component {
     state = {
         users:[],
@@ -48,12 +52,15 @@ class Home extends Component {
             this.setState({loggedInstate: true, userId: userToFind._id})
         }
         else{
-            console.log("didn't find user")
-          alert('User not found, please create an account')
-        }
+        
+        
+         alert('User not found, please create an account')
+}
+    }
+
         
 
-    }
+    
     render() {
       if(this.state.loggedInstate){
         return <Redirect to={`/users/${this.state.userId}`}/>
@@ -64,10 +71,10 @@ class Home extends Component {
 
         return (
             <HomePage>
-                <div>
+             
                <h1>Finally, you're here!</h1> 
                <h1>Now let's getIshDone!</h1>
-               <form onSubmit={this.findUserByEmail}>
+               <Form onSubmit={this.findUserByEmail}>
                     
                     <div><input
                         name="email"
@@ -81,9 +88,11 @@ class Home extends Component {
                     <div><input type="submit" value="Log In" /></div>
                    
                     
-                </form>
-                <Link to ='users/new'> <button>Create New User</button></Link>
-                </div>
+                </Form>
+                <Link to ='users/new'> <Button
+                color= 'success'
+                >Create New User</Button></Link>
+               
             </HomePage>
         );
     }

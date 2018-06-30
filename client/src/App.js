@@ -11,12 +11,16 @@ import Projects from './components/Projects'
 import Task from './components/Tasks'
 import NewUser from './components/NewUserForm'
 import NewProject from './components/ProjectForm'
-import AllProjects from './components/AllProjects'
+import NewTask from './components/TaskForm'
+import Navigation from './components/Nav'
+
+
 class App extends Component {
 
   state = {
     users: []
   }
+  
 
   componentDidMount() {
     this.getUsers()
@@ -45,6 +49,12 @@ addNewProjectToProjectsList = (newProject, userId)=>{
   })
 }  
 
+addNewTaskToTasksList = (newTask, userId, projectId)=>{
+  console.log('newTask',newTask)
+  axios.post(`/api/users/${userId}/projects/${projectId}/tasks}`, newTask).then((res)=>{
+    this.getUsers
+  })
+} 
 
 
   deleteUser = (userId) => {
@@ -98,10 +108,16 @@ addNewProjectToProjectsList = (newProject, userId)=>{
         <NewProject addNewProjectToProjectsList={this.addNewProjectToProjectsList}{...props} />
       )
     }
+    const NewTaskPage = (props) => {
+      return (
+        <NewTask addNewTaskToTasksList={this.addNewTaskToTasksList}{...props} />
+      )
+    }
    
     return (
-      <Router>
-
+      <Router> 
+     
+        
         <Switch>
 
           <Route exact path='/' component={HomePage}></Route>
@@ -110,8 +126,9 @@ addNewProjectToProjectsList = (newProject, userId)=>{
           <Route exact path='/users/:id' render={ShowUserPage}></Route>
           <Route exact path='/users/:userId/projects/new' render={NewProjectsPage}></Route>
           <Route exact path='/users/:userId/projects/:id' render={ProjectsPage}></Route>
+          <Route exact path='/users/:userId/projects/:projectId/tasks/new' render={NewTaskPage}></Route>
           <Route exact path='/users/:userId/projects/:projectId/tasks/:id' render={TaskPage}></Route>
-
+ 
 
 
         </Switch>

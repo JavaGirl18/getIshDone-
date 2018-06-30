@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class Tasks extends Component {
     state = {
         task: {}
+    }
+
+    handleNewTaskChange = (event) => {
+        const attributeName = event.target.name
+        const attributeValue = event.target.value
+
+        const newTask = {
+            ...this.state.task
+        }
+        newTask[attributeName] = attributeValue
+
+        this.setState({newTask})
+    };
+
+    addNewTask = (event) => {
+        event.preventDefault()
+
+        this
+            .props
+            .addNewTaskToTasksList(this.state.newTask)
+        this.props.history.push('/users/:userId/projects/:id')
+
     }
 
     componentDidMount() {
@@ -11,6 +34,7 @@ class Tasks extends Component {
         if (this.props.match.params) {
             console.log("STATE", this.state)
             const taskId = this.props.match.params.id
+           
             const userId = this.props.match.params.userId
             const projectId = this.props.match.params.projectId
 
@@ -19,7 +43,7 @@ class Tasks extends Component {
                 .then(res => {
                     console.log("response from api", res.data)
                     this.setState({ task: res.data })
-
+ console.log('res', res.data)
                 })
                 .catch((err) => {
                     console.error(err)
@@ -38,7 +62,7 @@ class Tasks extends Component {
                <p>Start Date: {this.state.task.startDate}</p>
                <p>Due Date: {this.state.task.dueDate}</p>
   
-                <button>Create New Task</button>
+              <Link to ={`/users/${this.props.match.params.userId}/projects/${this.props.match.params.id}/tasks/new`}>  <button>Create New Task</button></Link>
             </div>
         );
     }
