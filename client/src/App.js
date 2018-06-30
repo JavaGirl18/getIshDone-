@@ -51,7 +51,7 @@ addNewProjectToProjectsList = (newProject, userId)=>{
 
 addNewTaskToTasksList = (newTask, userId, projectId)=>{
   console.log('newTask',newTask)
-  axios.post(`/api/users/${userId}/projects/${projectId}/tasks}`, newTask).then((res)=>{
+  axios.post(`/api/users/${userId}/projects/${projectId}}`, newTask).then((res)=>{
     this.getUsers()
   })
 } 

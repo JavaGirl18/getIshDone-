@@ -19,11 +19,12 @@ class TaskForm extends Component {
 
     addNewTask = (event) => {
         event.preventDefault()
-
+        const userId = this.props.match.params.userId
+        const projectId = this.props.match.params.projectId
         this
             .props
-            .addNewTaskToTasksList(this.state.newTask)
-        this.props.history.push('/users/:userId/projects/:id')
+            .addNewTaskToTasksList(this.state.newTask, userId,projectId)
+        this.props.history.push(`/users/${userId}/projects/${projectId}`)
 
     }
 

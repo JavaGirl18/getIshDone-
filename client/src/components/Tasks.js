@@ -56,7 +56,10 @@ class Tasks extends Component {
     }
 
     render() {
+        const userId = this.props.match.params.userId
+        const projectId = this.props.match.params.projectId
         return (
+            
             <div>
                 <h1>Task:{this.state.task.taskName}</h1>
                 <p>Description: {this.state.task.description}</p>
@@ -65,7 +68,7 @@ class Tasks extends Component {
                <p>Due Date: {this.state.task.dueDate}</p>
                
   
-              <Link to ={`/users/${this.state.userId}/projects/${this.state.projectId}/tasks/new`}>  <button>Create New Task</button></Link>
+              <Link to ={`/users/${userId}/projects/${projectId}/tasks/new`}>  <button>Create New Task</button></Link>
             </div>
         );
     }
