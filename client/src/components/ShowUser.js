@@ -145,10 +145,10 @@ class ShowUser extends Component {
     
 
               
-                <h1>I'm one user</h1>
-                User Name: {userName}
-                Email: {email}
-                Role: {role}
+               
+               <h1> User Name: {userName} </h1>
+               <p>Email: {email}</p> 
+                <p>Role: {role}</p>
 
 
 
