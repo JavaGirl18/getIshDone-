@@ -21,10 +21,12 @@ class Tasks extends Component {
 
     addNewTask = (event) => {
         event.preventDefault()
-
+// console.log(this.state.newTask,'new task')
+// console.log(this.props.match.params.projectId,'projectId')
         this
             .props
             .addNewTaskToTasksList(this.state.newTask)
+
         this.props.history.push('/users/:userId/projects/:id')
 
     }
@@ -32,18 +34,18 @@ class Tasks extends Component {
     componentDidMount() {
 
         if (this.props.match.params) {
-            console.log("STATE", this.state)
+            // console.log("STATE", this.state)
             const taskId = this.props.match.params.id
            
             const userId = this.props.match.params.userId
             const projectId = this.props.match.params.projectId
 
-            console.log("Calling API")
+            // console.log("Calling API")
             axios.get(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`)
                 .then(res => {
-                    console.log("response from api", res.data)
-                    this.setState({ task: res.data })
- console.log('res', res.data)
+                    // console.log("response from api", res.data)
+                    this.setState({ task: res.data,projectId: projectId, userId:userId })
+//  console.log('res', res.data)
                 })
                 .catch((err) => {
                     console.error(err)
@@ -61,8 +63,9 @@ class Tasks extends Component {
                 <p>Status:{this.state.task.status}</p>
                <p>Start Date: {this.state.task.startDate}</p>
                <p>Due Date: {this.state.task.dueDate}</p>
+               
   
-              <Link to ={`/users/${this.props.match.params.userId}/projects/${this.props.match.params.id}/tasks/new`}>  <button>Create New Task</button></Link>
+              <Link to ={`/users/${this.state.userId}/projects/${this.state.projectId}/tasks/new`}>  <button>Create New Task</button></Link>
             </div>
         );
     }

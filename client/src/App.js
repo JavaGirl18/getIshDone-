@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import './App.css';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
@@ -12,7 +12,7 @@ import Task from './components/Tasks'
 import NewUser from './components/NewUserForm'
 import NewProject from './components/ProjectForm'
 import NewTask from './components/TaskForm'
-import Navigation from './components/Nav'
+
 
 
 class App extends Component {
@@ -45,14 +45,14 @@ class App extends Component {
 
 addNewProjectToProjectsList = (newProject, userId)=>{
   axios.post(`/api/users/${userId}/projects`, newProject).then((res)=>{
-    this.getUsers
+    this.getUsers()
   })
 }  
 
 addNewTaskToTasksList = (newTask, userId, projectId)=>{
   console.log('newTask',newTask)
   axios.post(`/api/users/${userId}/projects/${projectId}/tasks}`, newTask).then((res)=>{
-    this.getUsers
+    this.getUsers()
   })
 } 
 
@@ -105,7 +105,7 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     }
     const NewProjectsPage = (props) => {
       return (
-        <NewProject addNewProjectToProjectsList={this.addNewProjectToProjectsList}{...props} />
+        <NewProject addNewProjectToProjectsList={this.addNewProjectToProjectsList}{...props} getUsers={this.getUsers}/>
       )
     }
     const NewTaskPage = (props) => {
@@ -117,7 +117,7 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     return (
       <Router> 
      
-        
+      
         <Switch>
 
           <Route exact path='/' component={HomePage}></Route>

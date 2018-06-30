@@ -4,9 +4,9 @@
 
 }
 body{
-  background-image: url('https://cdn.lynda.com/static/landing/images/hero/ProjectScheduler_1200x630-1503436375769.jpg');
+
   background-size: auto;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
 
 }
 .App-logo {

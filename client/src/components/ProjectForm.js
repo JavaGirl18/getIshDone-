@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+
 
 class ProjectForm extends Component {
     state = {
@@ -26,15 +26,8 @@ class ProjectForm extends Component {
             .props
             .addNewProjectToProjectsList(this.state.newProject, userId)
                 this.props.history.push(`/users/${userId}`)
-                // axios.get(`/api/users/${userId}/projects`)
-                // .then(res => {
-                //     console.log("response from api", res.data)
-                //     this.setState({ newproject: res.data })
-
-                // })
-                // .catch((err) => {
-                //     console.error(err)
-                // })
+                this.props.getUsers()
+             
 
         }
             

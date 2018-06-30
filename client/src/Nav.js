@@ -7,11 +7,11 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Container,
-    Row,
-    Col,
-    Jumbotron,
-    Button
+    // Container,
+    // Row,
+    // Col,
+    // Jumbotron,
+    // Button
   } from 'reactstrap';
   
 

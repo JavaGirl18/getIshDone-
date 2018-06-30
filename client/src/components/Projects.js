@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import Tasks from './Tasks'
+
 import axios from 'axios'
-import Task from './Tasks'
+
 import { Link } from 'react-router-dom'
 
 class Projects extends Component {
     state = {
         project: {}
     }
+  
 
     componentDidMount() {
 
         if (this.props.match.params) {
-            console.log("PROPS", this.props)
+            // console.log("PROPS", this.props)
             const userId = this.props.match.params.userId
             const projectId = this.props.match.params.id
 
-            console.log("Calling API")
+            // console.log("Calling API")
             axios.get(`/api/users/${userId}/projects/${projectId}`)
                 .then(res => {
-                    console.log("response from api", res.data)
+                    // console.log("response from api", res.data)
                     this.setState({ project: res.data })
 
                 })
@@ -32,19 +33,19 @@ class Projects extends Component {
     }
 
     render() {
-        console.log("project", this.state.project);
+        // console.log("project", this.state.project);
         if (this.state.project.tasks) {
             const userId = this.props.match.params.userId
             const projectId = this.props.match.params.id
-            console.log('i a this', this)
+            // console.log('i a this', this)
             var tasksList = this.state.project.tasks.map((task, index) => {
                 const eachTask = `/users/${userId}/projects/${projectId}/tasks/${task._id}`
                 return (
-                    <ul>
+                    <li key ={index}>
 
                         <Link key={index} to={eachTask}>{task.taskName}</Link>
                         {/* <li key={index}>{task.description}</li> */}
-                    </ul>
+                    </li>
                 )
 
             })
@@ -59,7 +60,8 @@ class Projects extends Component {
                 <p>Start Date: {this.state.project.startDate}</p>
                 <p>End Date: {this.state.project.endDate}</p>
                 {/* <AllTasks project={this.state.project} /> */}
-                <h3>Tasks awaiting completion: <p>{tasksList}</p></h3>
+                <h3>Tasks awaiting completion:</h3>
+                <ul>{tasksList}</ul>
                 {/* <Link to ={`/users/${this.props.match.params.userId}/projects/new`}> <button>Create New Project</button></Link> */}
                 {/* <Task description = {this.state.task.description}/> */}
                 <button>Go Back</button>

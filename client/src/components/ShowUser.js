@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import Projects from './Projects'
+import {Link} from 'react-router-dom'
 import AllProjects from './AllProjects';
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
-const Show = styled.div`
 
-body{
-   height:100vh;
-   width:auto;
-  
-  }`
+
+
 
 class ShowUser extends Component {
     state = {
@@ -21,8 +16,8 @@ class ShowUser extends Component {
 
     deleteProject = (projectId) => {
         const userId = this.props.match.params.id
-        const userURL = `/users/${userId}`
-        console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
+      
+        // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
         axios.delete(`/api/users/${userId}/projects/${projectId}`).then(() => {
             this.getUser(userId)
         })
@@ -98,17 +93,17 @@ class ShowUser extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.id)
+        
         if (this.props.match.params) {
             const userId = this.props.match.params.id
-            console.log(userId)
+            // console.log(userId)
             this.getUser(userId)
 
         }
     }
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         const userName = this.state.users.name
         const email = this.state.users.email
         const role = this.state.users.role
@@ -144,7 +139,12 @@ class ShowUser extends Component {
 
 
         return (
-            <Show>
+          <div>
+
+
+    
+
+              
                 <h1>I'm one user</h1>
                 User Name: {userName}
                 Email: {email}
@@ -155,14 +155,14 @@ class ShowUser extends Component {
                 <AllProjects
                     users={this.state.users}
                     deleteProject={this.deleteProject} />
-                {/* <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button> */}
+                <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button>
                 <Link to={`/users/${this.props.match.params.id}/projects/new`}> <button>Create New Project</button></Link>
                 <button onClick={this.deleteUser}>Delete User</button>
                 <button onClick={this.toggleButton}>Update Profile</button>
 
-                {this.state.editUser? updateForm: null}
+                {this.state.editUser? updateForm: null} 
 
-            </Show>
+         </div>
 
 
 
