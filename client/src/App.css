@@ -4,9 +4,9 @@
 
 }
 body{
-
+  
   background-size: auto;
-  background-repeat: no-repeat; 
+  background-repeat:repeat;
 
 }
 .App-logo {

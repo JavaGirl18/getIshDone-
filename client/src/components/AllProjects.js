@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
+import styled from 'styled-components'
 
+
+
+const Project=styled.div`
+table{
+border:solid;
+background-color:#4F6485;
+}
+`
 class AllProjects extends Component {
     render() {
 
@@ -23,7 +32,7 @@ class AllProjects extends Component {
 
         })
         return (
-            <div>
+            <Project>
                 <Table hover>
                     <thead>
                         <tr>
@@ -38,7 +47,7 @@ class AllProjects extends Component {
                     </tbody>
                 </Table>
 
-            </div>
+            </Project>
         );
     }
 }

@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import {Redirect} from 'react-router-dom'
-import { Button, Form} from 'reactstrap'
+import { Button, Form,FormGroup, Label, Input} from 'reactstrap'
 
 
 
 
-const HomePage = styled.div`
-
-  
+const Container = styled.div`
+border:solid;
+display:block;
+justify-content:center;
+margin-auto
+;
 `
+
 class Home extends Component {
     state = {
         users:[],
@@ -70,11 +74,11 @@ class Home extends Component {
 
 
         return (
-            <HomePage>
+            <div>
              
                <h1>Finally, you're here!</h1> 
                <h1>Now let's getIshDone!</h1>
-               <Form onSubmit={this.findUserByEmail}>
+               {/* <Form onSubmit={this.findUserByEmail}>
                     
                     <div><input
                         name="email"
@@ -88,12 +92,25 @@ class Home extends Component {
                     <div><input type="submit" value="Log In" /></div>
                    
                     
-                </Form>
+                </Form> */}
+             <Container>
+                <Form inline onSubmit={this.findUserByEmail}>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="exampleEmail" className="mr-sm-2">Email</Label>
+          <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" onChange={this.handleFindUser}/>
+        </FormGroup>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="examplePassword" className="mr-sm-2">Password</Label>
+          <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" onChange={this.handleFindUser}  />
+        </FormGroup>
+        <Button>Submit</Button>
+      </Form> 
+     
                 <Link to ='users/new'> <Button
-                color= 'success'
-                >Create New User</Button></Link>
                
-            </HomePage>
+                >Create New User</Button></Link>
+               </Container> 
+           </div>
         );
     }
 }

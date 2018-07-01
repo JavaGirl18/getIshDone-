@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import AllProjects from './AllProjects';
-// import styled from 'styled-components'
+import {Button} from 'reactstrap'
+import styled from 'styled-components'
 
+
+const Action=styled.div`
+display:flex;
+justify-content: space-between;
+
+`
 
 
 
@@ -155,13 +162,14 @@ class ShowUser extends Component {
                 <AllProjects
                     users={this.state.users}
                     deleteProject={this.deleteProject} />
-                <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button>
-                <Link to={`/users/${this.props.match.params.id}/projects/new`}> <button>Create New Project</button></Link>
-                <button onClick={this.deleteUser}>Delete User</button>
-                <button onClick={this.toggleButton}>Update Profile</button>
+                  <Action> 
+                <Button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</Button>
+                <Link to={`/users/${this.props.match.params.id}/projects/new`}> <Button>Create New Project</Button></Link>
+          
+                <Button onClick={this.toggleButton}>Update Profile</Button>
 
                 {this.state.editUser? updateForm: null} 
-
+</Action> 
          </div>
 
 
