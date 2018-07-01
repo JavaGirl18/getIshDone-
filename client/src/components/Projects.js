@@ -4,8 +4,8 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { Link} from 'react-router-dom'
 import { Table,Badge } from 'reactstrap';
-import { Container, FormGroup, } from 'reactstrap';
-import { Grid, GridItem } from 'styled-grid-responsive'
+import { Container, FormGroup, Form } from 'reactstrap';
+
 
 
 
@@ -23,7 +23,8 @@ margin-top:50px;
 `
 class Projects extends Component {
     state = {
-        project: {}
+        project: {},
+        editProject: false
     }
   
 
@@ -52,7 +53,87 @@ class Projects extends Component {
 
     }
 
+
+
+
+    handleUpdate = (event) => {
+        const copyOfState = { ...this.state.project}
+        const attributeName = event.target.name
+        const attributeValue = event.target.value
+        copyOfState[attributeName] = attributeValue
+
+        this.setState({ project: copyOfState })
+    }
+
+
+    submitUpdate = (event) => {
+        event.preventDefault()
+        const updatedProject = this.state.project
+        const projectId = this.props.match.params.id
+        const userId = this.props.match.params.userId
+        console.log(updatedProject)
+        axios.put(`/api/users/${userId}/projects/${projectId}`, updatedProject).then(() => {
+            window.location.reload()
+        })
+    
+
+    }
+
+
+    toggleButton = () => {
+        const canEdit = !this.state.editProject
+        this.setState({ editProject: canEdit })
+    }
+
     render() {
+
+        const updateForm = (<Form onSubmit={this.submitUpdate}>
+            <FormGroup>
+                <input
+                    type="text"
+                    name="projectName"
+                    maxLength="8"
+                    placeholder="project name"
+                    value={this.state.project.name}
+                    onChange={this.handleUpdate} />
+                    <input type="submit" value="save" />
+               </FormGroup>
+               <FormGroup>
+                <input
+                    type="text"
+                    name="description"
+                    maxLength="8"
+                    placeholder="description"
+                    value={this.state.project.description}
+                    onChange={this.handleUpdate} />
+                    <input type="submit" value="save" />
+                    </FormGroup>
+                    <FormGroup>
+                <input
+                    type="Date"
+                    name="role"
+                    maxLength="8"
+                    placeholder="startDate"
+                    value={this.state.project.startDate}
+                    onChange={this.handleUpdate} />
+                <input type="submit" value="save" />
+                </FormGroup>
+                <FormGroup>
+                <input
+                    type="Date"
+                    name="role"
+                    maxLength="8"
+                    placeholder="endDate"
+                    value={this.state.project.endDate}
+                    onChange={this.handleUpdate} />
+                <input type="submit" value="save" />
+                </FormGroup>
+    
+            </Form>)
+
+
+
+
         // console.log("project", this.state.project);
         if (this.state.project.tasks) {
             const userId = this.props.match.params.userId
@@ -125,6 +206,8 @@ class Projects extends Component {
 
     {/* {tasksList} */}
 <Warning>
+    <button onClick={this.toggleButton}>Update Project</button>
+    {this.state.editProject? updateForm: null} 
    <center><h3>Tasks awaiting completion:</h3></center> 
              <center> {tasksList}</center> </Warning>
   <Link to ={each}><button>Go Back</button></Link>

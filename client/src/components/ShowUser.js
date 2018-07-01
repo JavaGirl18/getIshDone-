@@ -10,6 +10,9 @@ import { CLIENT_RENEG_LIMIT } from 'tls';
 const Action=styled.div`
 display:flex;
 justify-content: space-between;
+FormGroup{
+    color:pink
+}
 
 `
 const Name=styled.p`
@@ -127,6 +130,7 @@ class ShowUser extends Component {
                 placeholder="name"
                 value={this.state.users.name}
                 onChange={this.handleUpdate} />
+                <input type="submit" value="save" />
            </FormGroup>
            <FormGroup>
             <input
@@ -136,6 +140,7 @@ class ShowUser extends Component {
                 placeholder="email"
                 value={this.state.users.email}
                 onChange={this.handleUpdate} />
+                <input type="submit" value="save" />
                 </FormGroup>
                 <FormGroup>
             <input
@@ -171,14 +176,15 @@ class ShowUser extends Component {
                     users={this.state.users}
                     deleteProject={this.deleteProject} />
                   <Action> 
-                <Button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</Button>
-                <Link to={`/users/${this.props.match.params.id}/projects/new`}> <Button>Create New Project</Button></Link>
+                <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button>
+                <Link to={`/users/${this.props.match.params.id}/projects/new`}> <button>Create New Project</button></Link>
           
-                <Button onClick={this.toggleButton}>Update Profile</Button>
+                <button onClick={this.toggleButton}>Update Profile</button>
                <Link to= '/'> <button>Sign Out</button></Link>
 
-                {this.state.editUser? updateForm: null} 
+              
 </Action> 
+  {this.state.editUser? updateForm: null} 
          </div>
 
 
