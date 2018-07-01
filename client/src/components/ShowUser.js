@@ -160,6 +160,7 @@ class ShowUser extends Component {
 
 
                 <AllProjects
+                getUser= {()=>this.getUser(this.props.match.params.id)}
                     users={this.state.users}
                     deleteProject={this.deleteProject} />
                   <Action> 

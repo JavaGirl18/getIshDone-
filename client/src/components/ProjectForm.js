@@ -27,6 +27,7 @@ class ProjectForm extends Component {
             .addNewProjectToProjectsList(this.state.newProject, userId)
                 this.props.history.push(`/users/${userId}`)
                
+               
              
 
         }

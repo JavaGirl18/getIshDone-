@@ -35,6 +35,8 @@ class App extends Component {
         console.error(err)
       })
   }
+
+
   addNewUserToUsersList = (newUser) => {
     axios.post('/api/users', newUser).then((res) => {
       const usersList = [...this.state.users]
@@ -105,7 +107,7 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     }
     const NewProjectsPage = (props) => {
       return (
-        <NewProject addNewProjectToProjectsList={this.addNewProjectToProjectsList}{...props} getUsers={this.getUsers}/>
+        <NewProject addNewProjectToProjectsList={this.addNewProjectToProjectsList}{...props} />
       )
     }
     const NewTaskPage = (props) => {

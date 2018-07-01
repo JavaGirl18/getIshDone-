@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 
 import axios from 'axios'
-
+import styled from 'styled-components'
 import { Link} from 'react-router-dom'
-import { Table } from 'reactstrap';
+import { Table,Badge } from 'reactstrap';
 
+
+
+const Detail=styled.div`
+background-color:grey;
+`
 class Projects extends Component {
     state = {
         project: {}
@@ -45,7 +50,7 @@ class Projects extends Component {
                 return (
                     <tr key ={index}>
 
-                        <Link key={index} to={eachTask}>{task.taskName}</Link>
+                  <Badge color="warning">      <Link key={index} to={eachTask}>{task.taskName}</Link></Badge>
                         {/* <li key={index}>{task.description}</li> */}
                     </tr>
                 )
@@ -63,12 +68,13 @@ class Projects extends Component {
                 <p>End Date: {this.state.project.endDate}</p> */}
                 {/* <AllTasks project={this.state.project} /> */}
                 <h3>Tasks awaiting completion:</h3>
-                <ul>{tasksList}</ul>
+                {tasksList}
                 {/* <Link to ={`/users/${this.props.match.params.userId}/projects/new`}> <button>Create New Project</button></Link> */}
                 {/* <Task description = {this.state.task.description}/> */}
              
           
 <h1>  {this.state.project.projectName}</h1>
+<Detail>
  <Table bordered>
         <thead>
           <tr>
@@ -92,7 +98,7 @@ class Projects extends Component {
         </tbody> 
         {/* {tasksList} */}
       </Table>
-      
+      </Detail>
   <Link to ={each}><button>Go Back</button></Link>
  </div>
 );

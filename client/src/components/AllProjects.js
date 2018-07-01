@@ -12,6 +12,11 @@ background-color:#4F6485;
 }
 `
 class AllProjects extends Component {
+
+    componentDidMount(){
+        this.props.getUser()
+    }
+
     render() {
 
         const projectsList = this.props.users.projects || []
