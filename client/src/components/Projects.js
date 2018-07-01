@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { Link} from 'react-router-dom'
 import { Table,Badge } from 'reactstrap';
-import { Container, FormGroup, Form } from 'reactstrap';
+import { FormGroup, Form } from 'reactstrap';
 
 
 
@@ -94,7 +94,7 @@ class Projects extends Component {
                     name="projectName"
                    
                     placeholder="project name"
-                    value={this.state.project.name}
+                    value={this.state.project.projectName}
                     onChange={this.handleUpdate} />
                     <input type="submit" value="save" />
                </FormGroup>
@@ -128,7 +128,20 @@ class Projects extends Component {
                     onChange={this.handleUpdate} />
                 <input type="submit" value="save" />
                 </FormGroup>
-    
+                {/* <input
+                    type="Date"
+                    name="role"
+              
+                    placeholder="endDate"
+                    value={this.state.project.endDate}
+                    onChange={this.handleUpdate} />
+                <input type="submit" value="save" /> */}
+                Status<select name="cars"  onChange={this.handleUpdate}>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
             </Form>)
 
 

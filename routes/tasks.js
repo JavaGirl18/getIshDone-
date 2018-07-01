@@ -72,8 +72,9 @@ router.put('/:id', async (req, res) => {
 //delete route
 router.delete('/:id', async (req, res) => {
   UsersModel.findById(req.params.userId).then((user) => {
-    const project = user.projects.id(req.params.projectId)
-      const task = project.tasks.id(req.params.id)
+    
+    const projects = user.projects.id(req.params.projectId)
+      const task = projects.tasks.id(req.params.id)
 
       task.remove()
       return user.save()

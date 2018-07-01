@@ -81,7 +81,7 @@ class Home extends Component {
              
                <h1>Finally, you're here!</h1> 
                <h1>Now let's getIshDone!</h1>
-               <img src='./images/'></img>
+           
              
 
 

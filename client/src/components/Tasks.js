@@ -16,17 +16,17 @@ class Tasks extends Component {
         task: {}
     }
 
-    getUser = () => {
-        const userId = this.props.match.params.userId
-        const projectId = this.props.match.params.projectId
-        axios.get('/api/users/:userId/projects/:projectId').then((res) => {
-          this.setState({ users: res.data })
-        })
+    // getUser = () => {
+    //     const userId = this.props.match.params.userId
+    //     const projectId = this.props.match.params.projectId
+    //     axios.get('/api/users/:userId/projects/:projectId').then((res) => {
+    //       this.setState({ users: res.data })
+    //     })
     
-          .catch((err) => {
-            console.error(err)
-          })
-      }
+    //       .catch((err) => {
+    //         console.error(err)
+    //       })
+    //   }
 
     handleNewTaskChange = (event) => {
         const attributeName = event.target.name
@@ -56,11 +56,11 @@ class Tasks extends Component {
         const userId = this.props.match.params.userId
         const projectId = this.props.match.params.projectId
       
-        // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
-        // axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then(() => {
-            this.props.getUsers()
+        console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
+        axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then(() => {
+            // this.props.getUser()
             console.log( this.props.getUsers,'getuserssss')
-        // })
+        })
       }
 
     componentDidMount() {
