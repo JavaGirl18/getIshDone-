@@ -110,6 +110,7 @@ class Tasks extends Component {
               <Link to ={`/users/${userId}/projects/${projectId}/tasks/new`}>  <button>Create New Task</button></Link>
             </Task>
             <button onClick={()=> this.deleteTask(this.props.match.params.id)}>Mark as Complete</button>
+           <Link to={ `/users/${userId}/projects/${projectId}`}> <button>Go Back</button></Link>
             </div>
         );
     }
