@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import {Table} from 'reactstrap'
+import styled from 'styled-components'
 
+
+const Task=styled.div`
+margin-top:100px
+td, th{
+    background-color:#605F89;
+    background-size:cover;
+`
 class Tasks extends Component {
     state = {
         task: {}
@@ -30,6 +39,16 @@ class Tasks extends Component {
         this.props.history.push('/users/:userId/projects/:id')
 
     }
+
+    deleteTask = (taskId) => {
+        const userId = this.props.match.params.userId
+        const projectId = this.props.match.params.projectId
+      
+        // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
+        axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then(() => {
+            // this.getUser()
+        })
+      }
 
     componentDidMount() {
 
@@ -61,14 +80,36 @@ class Tasks extends Component {
         return (
             
             <div>
-                <h1>Task:{this.state.task.taskName}</h1>
-                <p>Description: {this.state.task.description}</p>
-                <p>Status:{this.state.task.status}</p>
-               <p>Start Date: {this.state.task.startDate}</p>
-               <p>Due Date: {this.state.task.dueDate}</p>
-               
+             <center> <h1>Task: {this.state.task.taskName}</h1></center>  
+                
+                <Task>
+                <Table bordered>
+        <thead>
+          <tr>
+      
+           
+            <th>Description: </th>
+            <th>Start Date: </th>
+            <th>Due Date</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            
+                
+                <td>{this.state.task.description}</td>
+                <td>{this.state.task.startDate}</td> 
+                
+                   <td>{this.state.task.dueDate}</td>
+                <td>{this.state.task.status}</td>
+          </tr>
+        </thead>
+ 
+      </Table>
+              
   
               <Link to ={`/users/${userId}/projects/${projectId}/tasks/new`}>  <button>Create New Task</button></Link>
+            </Task>
+            <button onClick={()=> this.deleteTask(this.props.match.params.id)}>Mark as Complete</button>
             </div>
         );
     }

@@ -9,6 +9,8 @@ const Project=styled.div`
 table{
 border:solid;
 background-color:#4F6485;
+margin-top:80px
+
 }
 `
 class AllProjects extends Component {
@@ -37,7 +39,7 @@ class AllProjects extends Component {
 
         })
         return (
-            <Project>
+          <center>  <Project>
                 <Table hover>
                     <thead>
                         <tr>
@@ -52,7 +54,7 @@ class AllProjects extends Component {
                     </tbody>
                 </Table>
 
-            </Project>
+            </Project></center>
         );
     }
 }

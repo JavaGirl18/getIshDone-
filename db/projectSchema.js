@@ -7,6 +7,7 @@ const ProjectsSchema = new Schema({
     description: String,
     startDate: Date,
     endDate: Date,
+    status:String,
     tasks:[TasksModel.schema],
     teamMembers:[{type:Schema.Types.ObjectId, ref: 'Users'}]
 })

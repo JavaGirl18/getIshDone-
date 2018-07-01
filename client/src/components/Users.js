@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Users extends Component {
+    // componentDidMount(){
+    //     this.props.getUser()
+    // }
+
     render() {
         const usersList = this.props.users
         console.log(usersList)

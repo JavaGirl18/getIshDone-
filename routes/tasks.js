@@ -33,15 +33,18 @@ router.get('/:id', async (req, res) => {
 
 // CREATE Route
 router.post('/', (req, res) => {
+  console.log('inside create route')
   UsersModel.findById(req.params.userId).then((user) => {
     const project = user.projects.id(req.params.projectId)
     const newTask = new TasksModel(req.body)
+ console.log(req.body, 'req body')
 
-
-    console.log(project)
+    // console.log(user,'user')
+    // console.log('project')
     project.tasks.push(newTask)
     user.save().then(() => {
       res.send(newTask)
+     
     })
 
   })

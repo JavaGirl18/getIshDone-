@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import AllProjects from './AllProjects';
-import {Button} from 'reactstrap'
+import {Button, Form, FormGroup} from 'reactstrap'
 import styled from 'styled-components'
+import { CLIENT_RENEG_LIMIT } from 'tls';
 
 
 const Action=styled.div`
@@ -11,6 +12,8 @@ display:flex;
 justify-content: space-between;
 
 `
+const Name=styled.p`
+font-weight: bold`
 
 
 
@@ -115,7 +118,8 @@ class ShowUser extends Component {
         const email = this.state.users.email
         const role = this.state.users.role
 
-        const updateForm = (<form onSubmit={this.submitUpdate}>
+        const updateForm = (<Form onSubmit={this.submitUpdate}>
+        <FormGroup>
             <input
                 type="text"
                 name="name"
@@ -123,7 +127,8 @@ class ShowUser extends Component {
                 placeholder="name"
                 value={this.state.users.name}
                 onChange={this.handleUpdate} />
-            <input type="submit" value="save" />
+           </FormGroup>
+           <FormGroup>
             <input
                 type="text"
                 name="email"
@@ -131,7 +136,8 @@ class ShowUser extends Component {
                 placeholder="email"
                 value={this.state.users.email}
                 onChange={this.handleUpdate} />
-            <input type="submit" value="save" />
+                </FormGroup>
+                <FormGroup>
             <input
                 type="text"
                 name="role"
@@ -140,8 +146,9 @@ class ShowUser extends Component {
                 value={this.state.users.role}
                 onChange={this.handleUpdate} />
             <input type="submit" value="save" />
+            </FormGroup>
 
-        </form>)
+        </Form>)
 
 
 
@@ -153,9 +160,9 @@ class ShowUser extends Component {
 
               
                
-               <h1> User Name: {userName} </h1>
-               <p>Email: {email}</p> 
-                <p>Role: {role}</p>
+              <center><h1>{userName}'s Projects </h1>
+              <Name>  Email:</Name><p>{email} </p>
+                <Name>Role:</Name> {role}</center> 
 
 
 

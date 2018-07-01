@@ -4,11 +4,22 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { Link} from 'react-router-dom'
 import { Table,Badge } from 'reactstrap';
+import { Container, FormGroup, } from 'reactstrap';
+import { Grid, GridItem } from 'styled-grid-responsive'
 
 
 
 const Detail=styled.div`
-background-color:grey;
+margin-top:100px;
+td, th{
+background-color:#606F89;
+background-size:cover;
+ 
+justify-content:right;
+// `
+const Warning=styled.div`
+margin-top:50px;
+
 `
 class Projects extends Component {
     state = {
@@ -17,6 +28,8 @@ class Projects extends Component {
   
 
     componentDidMount() {
+
+// this.props.getProject(projectId)
 
         if (this.props.match.params) {
             // console.log("PROPS", this.props)
@@ -47,12 +60,16 @@ class Projects extends Component {
             // console.log('i a this', this)
             var tasksList = this.state.project.tasks.map((task, index) => {
                 const eachTask = `/users/${userId}/projects/${projectId}/tasks/${task._id}`
+                // if(this.propject.task.status){
+                    
+                // }
                 return (
-                    <tr key ={index}>
+                 <div>
+                     
 
                   <Badge color="warning">      <Link key={index} to={eachTask}>{task.taskName}</Link></Badge>
                         {/* <li key={index}>{task.description}</li> */}
-                    </tr>
+                   </div> 
                 )
 
             })
@@ -67,38 +84,49 @@ class Projects extends Component {
                 <p>Start Date: {this.state.project.startDate}</p>
                 <p>End Date: {this.state.project.endDate}</p> */}
                 {/* <AllTasks project={this.state.project} /> */}
-                <h3>Tasks awaiting completion:</h3>
-                {tasksList}
+                    {/* <h3>Tasks awaiting completion:</h3>
+             <Warning>        {tasksList}</Warning> */}
                 {/* <Link to ={`/users/${this.props.match.params.userId}/projects/new`}> <button>Create New Project</button></Link> */}
                 {/* <Task description = {this.state.task.description}/> */}
              
           
-<h1>  {this.state.project.projectName}</h1>
+<center><h1>  {this.state.project.projectName}</h1></center>
 <Detail>
  <Table bordered>
         <thead>
-          <tr>
+        <tr>
       
             <th>Description:</th>
             <th>Start Date: </th>
             <th>End Date: </th>
+            <th>Status</th>
           </tr>
           <tr>
             
                 <td> {this.state.project.description}</td>
                 <td>{this.state.project.startDate}</td>
                 <td>{this.state.project.endDate}</td>
+                <td>{this.state.project.status}</td>
               
               
           </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
           
           
-        </tbody> 
-        {/* {tasksList} */}
+        </tbody>  */}
+       
       </Table>
+  
+
+
+
       </Detail>
+
+    {/* {tasksList} */}
+<Warning>
+   <center><h3>Tasks awaiting completion:</h3></center> 
+             <center> {tasksList}</center> </Warning>
   <Link to ={each}><button>Go Back</button></Link>
  </div>
 );

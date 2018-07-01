@@ -23,6 +23,7 @@ class NewUserForm extends Component {
         this
             .props
             .addNewUserToUsersList(this.state.newUser)
+            // this.props.getUser()
                 this.props.history.push('/users')
             
     }
@@ -56,6 +57,8 @@ class NewUserForm extends Component {
                     <div><input type="submit" value="Create New User" /></div> */}
                     
                 </form>
+
+                
             </div>
         )
     }

@@ -61,6 +61,7 @@ const task3 = new TasksModel({
 const project1 = new ProjectsModel({
     projectName: 'Project3',
     description: 'complete project 3',
+    status:"On time",
     startDate: new Date(2018, 6, 25),
     endDate: new Date(2018, 7, 02),
     tasks: [task1, task2],
@@ -70,6 +71,7 @@ const project1 = new ProjectsModel({
 const project2 = new ProjectsModel({
     projectName: 'PM app',
     description: 'create a PM app',
+    status:'Delayed',
     startDate: new Date(2018, 9, 15),
     endDate: new Date(2018, 10, 15),
     tasks: [task2, task3]
@@ -79,6 +81,7 @@ const project2 = new ProjectsModel({
 const project3 = new ProjectsModel({
     projectName: 'Chat Bot app',
     description: 'create a chat bot',
+    status:'On time',
     startDate: new Date(2018, 8, 15),
     endDate: new Date(2018, 9, 15),
     tasks: [task3, task1]

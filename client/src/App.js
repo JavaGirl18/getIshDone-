@@ -12,6 +12,7 @@ import Task from './components/Tasks'
 import NewUser from './components/NewUserForm'
 import NewProject from './components/ProjectForm'
 import NewTask from './components/TaskForm'
+import Navigation from './components/Navigation';
 
 
 
@@ -36,6 +37,15 @@ class App extends Component {
       })
   }
 
+//   getProject = (projectId) => {
+//     axios
+//         .get(`/api/users/${userId}/projects/:id`)
+//         .then(res => {
+//             this.setState({ project: res.data })
+
+//         })
+// }
+
 
   addNewUserToUsersList = (newUser) => {
     axios.post('/api/users', newUser).then((res) => {
@@ -53,10 +63,11 @@ addNewProjectToProjectsList = (newProject, userId)=>{
 
 addNewTaskToTasksList = (newTask, userId, projectId)=>{
   console.log('newTask',newTask)
-  axios.post(`/api/users/${userId}/projects/${projectId}}`, newTask).then((res)=>{
+  axios.post(`/api/users/${userId}/projects/${projectId}/tasks`, newTask).then((res)=>{
     this.getUsers()
   })
 } 
+
 
 
   deleteUser = (userId) => {
@@ -92,7 +103,7 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     }
     const ProjectsPage = (props) => {
       return (
-        <Projects users={this.state.users} {...props} />
+        <Projects users={this.state.users} {...props} getProject={this.getProject} />
       )
     }
     const TaskPage = (props) => {
@@ -112,12 +123,14 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     }
     const NewTaskPage = (props) => {
       return (
-        <NewTask addNewTaskToTasksList={this.addNewTaskToTasksList}{...props} />
+        <NewTask addNewTaskToTasksList={this.addNewTaskToTasksList}{...props}  />
       )
     }
    
     return (
       <Router> 
+     
+       {/* <Navigation/> */}
      
       
         <Switch>
