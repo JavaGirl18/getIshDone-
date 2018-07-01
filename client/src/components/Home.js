@@ -15,6 +15,9 @@ margin-auto
 ;
 `
 
+
+
+
 class Home extends Component {
     state = {
         users:[],
@@ -78,21 +81,12 @@ class Home extends Component {
              
                <h1>Finally, you're here!</h1> 
                <h1>Now let's getIshDone!</h1>
-               {/* <Form onSubmit={this.findUserByEmail}>
-                    
-                    <div><input
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                        onChange={this.handleFindUser} /></div>
-                    <div><input
-                        name="password"
-                        type="password"
-                        onChange={this.handleFindUser} /></div>
-                    <div><input type="submit" value="Log In" /></div>
-                   
-                    
-                </Form> */}
+               <img src='./images/'></img>
+             
+
+
+
+             
              <Container>
                 <Form inline onSubmit={this.findUserByEmail}>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">

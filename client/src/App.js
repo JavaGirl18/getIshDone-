@@ -154,5 +154,4 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     )
   }
 }
-
-export default App;
+ export default App

@@ -16,6 +16,18 @@ class Tasks extends Component {
         task: {}
     }
 
+    getUser = () => {
+        const userId = this.props.match.params.userId
+        const projectId = this.props.match.params.projectId
+        axios.get('/api/users/:userId/projects/:projectId').then((res) => {
+          this.setState({ users: res.data })
+        })
+    
+          .catch((err) => {
+            console.error(err)
+          })
+      }
+
     handleNewTaskChange = (event) => {
         const attributeName = event.target.name
         const attributeValue = event.target.value
@@ -45,9 +57,10 @@ class Tasks extends Component {
         const projectId = this.props.match.params.projectId
       
         // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
-        axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then(() => {
-            // this.getUser()
-        })
+        // axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then(() => {
+            this.props.getUsers()
+            console.log( this.props.getUsers,'getuserssss')
+        // })
       }
 
     componentDidMount() {
@@ -75,6 +88,57 @@ class Tasks extends Component {
     }
 
     render() {
+
+        // const updateForm = (<Form onSubmit={this.submitUpdate}>
+        //     <FormGroup>
+        //         <input
+        //             type="text"
+        //             name="taskName"
+                   
+        //             placeholder="task name"
+        //             value={this.state.project.name}
+        //             onChange={this.handleUpdate} />
+        //             <input type="submit" value="save" />
+        //        </FormGroup>
+        //        <FormGroup>
+        //         <input
+        //             type="text"
+        //             name="description"
+                  
+        //             placeholder="description"
+        //             value={this.state.project.description}
+        //             onChange={this.handleUpdate} />
+        //             <input type="submit" value="save" />
+        //             </FormGroup>
+        //             <FormGroup>
+        //         <input
+        //             type="Date"
+        //             name="role"
+                
+        //             placeholder="startDate"
+        //             value={this.state.project.startDate}
+        //             onChange={this.handleUpdate} />
+        //         <input type="submit" value="save" />
+        //         </FormGroup>
+        //         <FormGroup>
+        //         <input
+        //             type="Date"
+        //             name="role"
+              
+        //             placeholder="endDate"
+        //             value={this.state.project.endDate}
+        //             onChange={this.handleUpdate} />
+        //         <input type="submit" value="save" />
+        //         </FormGroup>
+    
+        //     </Form>)
+
+
+
+
+
+
+
         const userId = this.props.match.params.userId
         const projectId = this.props.match.params.projectId
         return (

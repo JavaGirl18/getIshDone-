@@ -92,7 +92,7 @@ class Projects extends Component {
                 <input
                     type="text"
                     name="projectName"
-                    maxLength="8"
+                   
                     placeholder="project name"
                     value={this.state.project.name}
                     onChange={this.handleUpdate} />
@@ -102,7 +102,7 @@ class Projects extends Component {
                 <input
                     type="text"
                     name="description"
-                    maxLength="8"
+                  
                     placeholder="description"
                     value={this.state.project.description}
                     onChange={this.handleUpdate} />
@@ -112,7 +112,7 @@ class Projects extends Component {
                 <input
                     type="Date"
                     name="role"
-                    maxLength="8"
+                
                     placeholder="startDate"
                     value={this.state.project.startDate}
                     onChange={this.handleUpdate} />
@@ -122,7 +122,7 @@ class Projects extends Component {
                 <input
                     type="Date"
                     name="role"
-                    maxLength="8"
+              
                     placeholder="endDate"
                     value={this.state.project.endDate}
                     onChange={this.handleUpdate} />
