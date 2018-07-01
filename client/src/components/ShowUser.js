@@ -175,6 +175,7 @@ class ShowUser extends Component {
                 <Link to={`/users/${this.props.match.params.id}/projects/new`}> <Button>Create New Project</Button></Link>
           
                 <Button onClick={this.toggleButton}>Update Profile</Button>
+               <Link to= '/'> <button>Sign Out</button></Link>
 
                 {this.state.editUser? updateForm: null} 
 </Action> 
