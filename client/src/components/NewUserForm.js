@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-
+import {Redirect} from 'react-router-dom'
 class NewUserForm extends Component {
     state = {
-        newUser: {}
+        newUser: {},
+        redirect: false
     }
 
     handleNewUserChange = (event) => {
@@ -22,9 +23,10 @@ class NewUserForm extends Component {
 
         this
             .props
-            .addNewUserToUsersList(this.state.newUser).then((res)=>{
-                 this.props.history.push('/users')
-            })
+            .addNewUserToUsersList(this.state.newUser)
+            
+            this.setState({redirect:true})
+           
             // this.props.getUser()
                
             
@@ -32,7 +34,12 @@ class NewUserForm extends Component {
 
 
     render() {
+        if (this.state.redirect) {
+            console.log('redirecting')
+            return <Redirect push to={'/'} />
+        }
         return (
+           
             <div>
                 <form onSubmit={this.addNewUser}>
                     <div><input

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
+import {Redirect} from 'react-router-dom'
 
 class ProjectForm extends Component {
     state = {
-        newProject: {}
+        newProject: {},
+        redirect:false
     }
 
     handleNewProjectChange = (event) => {
@@ -26,7 +28,7 @@ class ProjectForm extends Component {
             .props
             .addNewProjectToProjectsList(this.state.newProject, userId)
                 this.props.history.push(`/users/${userId}`)
-               
+               this.setState({redirect:true})
                
              
 
@@ -37,6 +39,11 @@ class ProjectForm extends Component {
 
 
     render() {
+        const userId = this.props.match.params.userId
+        if (this.state.redirect) {
+            console.log('redirecting')
+            return <Redirect push to={`/users/${userId}`} />
+        }
         return (
             <div>
                

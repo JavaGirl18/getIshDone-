@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Table, Badge } from 'reactstrap';
-import { FormGroup, Form } from 'reactstrap';
+import { FormGroup, Form, Input, Label } from 'reactstrap';
 
 
 
@@ -134,22 +134,18 @@ class Projects extends Component {
                     onChange={this.handleUpdate} />
                 <input type="submit" value="save" />
             </FormGroup>
-            <input
-                    type="Date"
-                    name="role"
-              
-                    placeholder="endDate"
-                    value={this.state.project.endDate}
-                    onChange={this.handleUpdate} />
             <FormGroup>
-                <select>
+            <Label for="exampleSelect">Status</Label>
+          <Input type="select" name="status"  onChange={this.handleUpdate}> 
+                
                     <option value="select">Select</option>
                     <option value="Not Started">Not Started</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Delayed">Delayed </option>
-
-                </select>
-                <input type="submit" value="save" onChange={this.handleUpdate} /></FormGroup>
+             
+                </Input> 
+                 </FormGroup> 
+                 <input type="submit" value="save" />
         </Form>)
 
 
@@ -177,6 +173,7 @@ class Projects extends Component {
             })
         }
         const userId = this.props.match.params.userId
+        const projectId = this.props.match.params.id
         const each = `/users/${userId}`
         return (
             
@@ -207,6 +204,7 @@ class Projects extends Component {
                     {this.state.editProject ? updateForm : null}
                     <center><h3>Tasks awaiting completion:</h3></center>
                     <center> {tasksList}</center> 
+                    <Link to ={`/users/${userId}/projects/${projectId}/tasks/new`}>  <button>Create New Task</button></Link>
                 </Warning>
                 <Link to={each}><button>Go Back</button></Link>
             </div>

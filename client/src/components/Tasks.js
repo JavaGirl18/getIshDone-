@@ -101,54 +101,6 @@ class Tasks extends Component {
 
     render() {
 
-        // const updateForm = (<Form onSubmit={this.submitUpdate}>
-        //     <FormGroup>
-        //         <input
-        //             type="text"
-        //             name="taskName"
-                   
-        //             placeholder="task name"
-        //             value={this.state.project.name}
-        //             onChange={this.handleUpdate} />
-        //             <input type="submit" value="save" />
-        //        </FormGroup>
-        //        <FormGroup>
-        //         <input
-        //             type="text"
-        //             name="description"
-                  
-        //             placeholder="description"
-        //             value={this.state.project.description}
-        //             onChange={this.handleUpdate} />
-        //             <input type="submit" value="save" />
-        //             </FormGroup>
-        //             <FormGroup>
-        //         <input
-        //             type="Date"
-        //             name="role"
-                
-        //             placeholder="startDate"
-        //             value={this.state.project.startDate}
-        //             onChange={this.handleUpdate} />
-        //         <input type="submit" value="save" />
-        //         </FormGroup>
-        //         <FormGroup>
-        //         <input
-        //             type="Date"
-        //             name="role"
-              
-        //             placeholder="endDate"
-        //             value={this.state.project.endDate}
-        //             onChange={this.handleUpdate} />
-        //         <input type="submit" value="save" />
-        //         </FormGroup>
-    
-        //     </Form>)
-
-
-
-
-
 
 
         const userId = this.props.match.params.userId
@@ -183,7 +135,7 @@ class Tasks extends Component {
       </Table>
               
   
-              <Link to ={`/users/${userId}/projects/${projectId}/tasks/new`}>  <button>Create New Task</button></Link>
+              {/* <Link to ={`/users/${userId}/projects/${projectId}/tasks/new`}>  <button>Create New Task</button></Link> */}
             </Task>
             <button onClick={()=> this.deleteTask(this.props.match.params.id)}>Mark as Complete</button>
            <Link to={ `/users/${userId}/projects/${projectId}`}> <button>Go Back</button></Link>
