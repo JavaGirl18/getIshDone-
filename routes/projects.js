@@ -45,6 +45,7 @@ router.put('/:id', async (req, res) => {
         updatedProject.description = req.body.description
         updatedProject.startDate = req.body.startDate
         updatedProject.endDate = req.body.endDate
+        updatedProject.status = req.body.status
         return user.save().then((updatedProject) => {
             res.send(updatedProject)
         })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 class NewUserForm extends Component {
     state = {
         newUser: {},
@@ -24,12 +25,12 @@ class NewUserForm extends Component {
         this
             .props
             .addNewUserToUsersList(this.state.newUser)
-            
-            this.setState({redirect:true})
-           
-            // this.props.getUser()
-               
-            
+
+        this.setState({ redirect: true })
+
+        // this.props.getUser()
+
+
     }
 
 
@@ -39,9 +40,9 @@ class NewUserForm extends Component {
             return <Redirect push to={'/'} />
         }
         return (
-           
+
             <div>
-                <form onSubmit={this.addNewUser}>
+                {/* <form onSubmit={this.addNewUser}>
                     <div><input
                         name="name"
                         type="text"
@@ -57,16 +58,40 @@ class NewUserForm extends Component {
                         type="text"
                         placeholder="What's your role?"
                         onChange={this.handleNewUserChange} /></div>
-                    <div><input type="submit" value="Create New User" /></div>
-                  
+                    <div><input type="submit" value="Create New User" /></div> */}
+
+                <Form onSubmit={this.addNewUser}>
+                    <FormGroup>
+                        <Label for="exampleEmail"> Name</Label>
+                        <Input type='text' name="name" placeholder="what's your name" onChange={this.handleNewUserChange} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="examplePassword">Email</Label>
+                        <Input type="description" name="email" placeholder="what's your email" onChange={this.handleNewUserChange} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="examplePassword">Create a Password</Label>
+                        <Input type="password" name="password" placeholder="password" onChange={this.handleNewUserChange} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="examplePassword">Your role</Label>
+                        <Input type="select" name="role" placeholder="due date" onChange={this.handleNewUserChange} >
+                            <option>Select</option>
+                            <option>Owner</option>
+                            <option>Team Member</option>
+                        </Input>
+                    </FormGroup>
+                    <input type="submit" value="Create New User" />
+
+                </Form>
 
 
-                  
-                    
-                </form>
 
-                
-            </div>
+
+
+
+
+            </div >
         )
     }
 
