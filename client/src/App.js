@@ -37,14 +37,11 @@ class App extends Component {
       })
   }
 
-//   getProject = (projectId) => {
-//     axios
-//         .get(`/api/users/${userId}/projects/:id`)
-//         .then(res => {
-//             this.setState({ project: res.data })
 
-//         })
-// }
+  
+      
+
+
 
 
   addNewUserToUsersList = (newUser) => {
@@ -104,7 +101,7 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     }
     const ProjectsPage = (props) => {
       return (
-        <Projects users={this.state.users} {...props} getProject={this.getProject} />
+        <Projects users={this.state.users} {...props} getProject={this.getProject}/>
       )
     }
     const TaskPage = (props) => {
@@ -124,7 +121,7 @@ addNewTaskToTasksList = (newTask, userId, projectId)=>{
     }
     const NewTaskPage = (props) => {
       return (
-        <NewTask addNewTaskToTasksList={this.addNewTaskToTasksList}{...props}  />
+        <NewTask addNewTaskToTasksList={this.addNewTaskToTasksList}{...props} getProject={this.getProject}  />
       )
     }
    

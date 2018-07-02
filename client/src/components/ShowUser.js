@@ -25,13 +25,21 @@ class ShowUser extends Component {
         users: {},
         editUser: false
     }
+  getUser = (userId) => {
+        axios
+            .get(`/api/users/${userId}`)
+            .then(res => {
+                this.setState({ users: res.data })
 
+            })
+    }
     deleteProject = (projectId) => {
         const userId = this.props.match.params.id
       
         // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
-        axios.delete(`/api/users/${userId}/projects/${projectId}`).then(() => {
-            this.getUser(projectId)
+        axios.delete(`/api/users/${userId}/projects/${projectId}`).then((res) => {
+            window.location.reload()
+            // this.getUser(projectId)
         })
     }
 
@@ -40,20 +48,13 @@ class ShowUser extends Component {
         //make a delete request to our copy of the api using the params to identify specific idea
         axios.delete(`/api/users/${userId}`).then((res) => {
             this.getUser(userId)
-
+            // this.props.history.push(`/users/${userId}`)
         })
 
     }
 
 
-    getUser = (userId) => {
-        axios
-            .get(`/api/users/${userId}`)
-            .then(res => {
-                this.setState({ users: res.data })
-
-            })
-    }
+  
 
     handleUpdate = (event) => {
         const copyOfState = { ...this.state.users }

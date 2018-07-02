@@ -24,45 +24,14 @@ class TaskForm extends Component {
         this
             .props
             .addNewTaskToTasksList(this.state.newTask, userId,projectId)
-            console.log(this.state.newTask,'newTask')
+         
         this.props.history.push(`/users/${userId}/projects/${projectId}`)
-
     }
 
 
     render() {
         return (
             <div>
-                {/* <form onSubmit={this.addNewTask}>
-                    <div><input
-                        name="taskName"
-                        type="text"
-                        placeholder="Name your Task"
-                        onChange={this.handleNewUserChange} /></div>
-                    <div><input
-                        name="description"
-                        type="text"
-                        placeholder="description"
-                        onChange={this.handleNewTaskChange} /></div>
-                    <div><input
-                        name="status"
-                        type="text"
-                        placeholder="Status"
-                        onChange={this.handleNewTaskChange} /></div>
-                    <div><input
-                        name="startDate"
-                        type='Date'
-                        placeholder="Start Date"
-                        onChange={this.handleNewTaskChange} /></div>
-                    <div><input
-                        name="dueDate"
-                        type='Date'
-                        placeholder="Due Date"
-                        onChange={this.handleNewTaskChange} /></div>
-                    <div><input type="submit" value="Create New Task" /></div>
-                
-                </form>
- */}
 
                      <Form onSubmit={this.addNewTask}>
         <FormGroup>

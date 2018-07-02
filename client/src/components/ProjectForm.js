@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 class ProjectForm extends Component {
     state = {
@@ -39,23 +39,40 @@ class ProjectForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.addNewProject}>
-                    <div><input
-                        name="projectName"
-                        type="text"
-                        placeholder="Name your Project"
-                        onChange={this.handleNewProjectChange} /></div>
-                    <div><input
-                        name="description"
-                        type="text"
-                        placeholder="Describe the Ish you need to get done"
-                        onChange={this.handleNewProjectChange} /></div>
-                    <div><input
-                        name="endDate"
-                        type='Date'
-                        placeholder="Due Date"
-                        onChange={this.handleNewProjectChange} /></div>
-                    <div><input type="submit" value="Create New Project" /></div>
+               
+
+
+             <Form onSubmit={this.addNewProject}>
+        <FormGroup>
+          <Label for="exampleEmail">Project Name</Label>
+          <Input type='text' name="projectName" placeholder="name your project"   onChange={this.handleNewProjectChange}/>
+        </FormGroup>
+        <FormGroup>
+          <Label for="examplePassword">Description</Label>
+          <Input type="description" name="description" placeholder="desrcibe project"    onChange={this.handleNewProjectChange}/>
+        </FormGroup>
+        <FormGroup>
+          <Label for="examplePassword">Start Date</Label>
+          <Input type="Date" name="startDate" placeholder="start date"  onChange={this.handleNewProjectChange} />
+        </FormGroup>
+        <FormGroup>
+          <Label for="examplePassword">Due Date</Label>
+          <Input type="Date" name="endDate" placeholder="due date"   onChange={this.handleNewProjectChange} />
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleSelect">Status</Label>
+          <Input type="select" name="status"    onChange={this.handleNewProjectChange}> 
+            <option>Select</option>
+            <option>Not started</option>
+            <option>In progress</option>
+            <option>Need more info</option>
+            <option>Delayed</option>
+          </Input>
+           </FormGroup>
+        <input type="submit" value="Create New Task" />
+         
+          </Form>
+
                     
                     {/* <div><input
                         name="role"
@@ -64,7 +81,7 @@ class ProjectForm extends Component {
                         onChange={this.handleNewUserChange} /></div>
                     <div><input type="submit" value="Create New User" /></div> */}
                     
-                </form>
+                {/* </form> */}
             </div>
         )
     }
