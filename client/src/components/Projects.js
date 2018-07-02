@@ -95,44 +95,28 @@ class Projects extends Component {
 
         const updateForm = (<Form onSubmit={this.submitUpdate}>
             <FormGroup>
-                <input
-                    type="text"
-                    name="projectName"
-
-                    placeholder="project name"
-                    value={this.state.project.projectName}
-                    onChange={this.handleUpdate} />
+            <Label for="exampleSelect">Project Name</Label>
+          <Input type="text" name="projectName"    value={this.state.project.projectName} onChange={this.handleUpdate}> 
                 <input type="submit" value="save" />
+                </Input>
             </FormGroup>
             <FormGroup>
-                <input
-                    type="text"
-                    name="description"
-
-                    placeholder="description"
-                    value={this.state.project.description}
-                    onChange={this.handleUpdate} />
+            <Label for="exampleSelect">Description</Label>
+          <Input type="text" name="description"    value={this.state.project.description} onChange={this.handleUpdate}> 
                 <input type="submit" value="save" />
+                </Input>
             </FormGroup>
             <FormGroup>
-                <input
-                    type="Date"
-                    name="startDate"
-
-                    placeholder="startDate"
-                    value={this.state.project.startDate}
-                    onChange={this.handleUpdate} />
+            <Label for="exampleSelect">Start Date</Label>
+          <Input type="Date" name="startDate"    value={this.state.project.startDate} onChange={this.handleUpdate}> 
                 <input type="submit" value="save" />
+                </Input>
             </FormGroup>
             <FormGroup>
-                <input
-                    type="Date"
-                    name="endDate"
-
-                    placeholder="endDate"
-                    value={this.state.project.endDate}
-                    onChange={this.handleUpdate} />
+            <Label for="exampleSelect">Due Date</Label>
+          <Input type="Date" name="endDate"    value={this.state.project.endDate} onChange={this.handleUpdate}> 
                 <input type="submit" value="save" />
+                </Input>
             </FormGroup>
             <FormGroup>
             <Label for="exampleSelect">Status</Label>
