@@ -57,7 +57,7 @@ class Tasks extends Component {
         axios
             .get(`/api/users/${userId}/projects/${projectId}/tasks`)
             .then(res => {
-                this.setState({ task: res.data })
+                this.setState({ task: res.data})
 
             })
     }
@@ -68,9 +68,9 @@ class Tasks extends Component {
         const projectId = this.props.match.params.projectId
       
         // // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
-        axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then(() => {
+        axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then((res) => {
        
-            this.getTask()
+           this.setState({task: res.data})
             console.log( this.props.getUsers,'getuserssss')
         })
       }
@@ -83,19 +83,17 @@ class Tasks extends Component {
            
             const userId = this.props.match.params.userId
             const projectId = this.props.match.params.projectId
-this.getTask(taskId). then(()=>{
-    window.location.reload()
-})
-//             // console.log("Calling API")
-//             axios.get(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`)
-//                 .then(res => {
-//                     // console.log("response from api", res.data)
-//                     this.setState({ task: res.data,projectId: projectId, userId:userId })
-// //  console.log('res', res.data)
-//                 })
-//                 .catch((err) => {
-//                     console.error(err)
-//                 })
+// this.getTask(taskId)
+            // console.log("Calling API")
+            axios.get(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`)
+                .then(res => {
+                    // console.log("response from api", res.data)
+                    this.setState({ task: res.data,projectId: projectId, userId:userId })
+//  console.log('res', res.data)
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
 
         }
 

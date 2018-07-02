@@ -91,7 +91,7 @@ class TaskForm extends Component {
             <option>Delayed</option>
           </Input>
            </FormGroup>
-          <div><input type="submit" value="Create New Task" /></div>
+        <input type="submit" value="Create New Task" />
          
           </Form>
             </div>

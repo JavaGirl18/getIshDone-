@@ -111,7 +111,7 @@ class Projects extends Component {
                     <FormGroup>
                 <input
                     type="Date"
-                    name="role"
+                    name="startDate"
                 
                     placeholder="startDate"
                     value={this.state.project.startDate}
@@ -121,7 +121,7 @@ class Projects extends Component {
                 <FormGroup>
                 <input
                     type="Date"
-                    name="role"
+                    name="endDate"
               
                     placeholder="endDate"
                     value={this.state.project.endDate}
@@ -134,9 +134,9 @@ class Projects extends Component {
               
                     placeholder="endDate"
                     value={this.state.project.endDate}
-                    onChange={this.handleUpdate} />
-                <input type="submit" value="save" /> */}
-                Status<select name="cars"  onChange={this.handleUpdate}>
+                    onChange={this.handleUpdate} /> */}
+                 <input type="submit" value="save" onChange={this.handleUpdate} />
+                Status<select name="cars"  o>
     <option value="volvo">Volvo</option>
     <option value="saab">Saab</option>
     <option value="fiat">Fiat</option>
@@ -160,7 +160,7 @@ class Projects extends Component {
                 return (
                  <div>
                      
-
+    
                   <Badge color="warning">      <Link key={index} to={eachTask}>{task.taskName}</Link></Badge>
                         {/* <li key={index}>{task.description}</li> */}
                    </div> 
@@ -173,6 +173,7 @@ class Projects extends Component {
         return (
             <div>
 
+                    {/* <
                 {/* <h1>Project Name: {this.state.project.projectName}</h1>
                 <p>Description: {this.state.project.description}</p>
                 <p>Start Date: {this.state.project.startDate}</p>

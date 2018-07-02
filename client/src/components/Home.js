@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import {Redirect} from 'react-router-dom'
-import { Button, Form,FormGroup, Label, Input} from 'reactstrap'
+import { Redirect } from 'react-router-dom'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 
 
@@ -11,27 +11,40 @@ const Container = styled.div`
 border:solid;
 display:block;
 justify-content:center;
-margin-auto
+margin-top:100px
 ;
 `
+const Img = styled.div`
+height:200px;
+width:auto;
 
+`
+const Main = styled.div`
+margin:auto;
+padding-left:20px;
+color:white
 
+`
+const OR = styled.div`
+margin-left:10px;
+color:white;
+`
 
 
 class Home extends Component {
     state = {
-        users:[],
+        users: [],
         loggedUser: {
-            email:'',
-            password:''
+            email: '',
+            password: ''
         },
         loggedInstate: false,
-        userId:''
+        userId: ''
 
     }
-    
 
-// 
+
+    // 
 
 
     handleFindUser = (event) => {
@@ -48,63 +61,64 @@ class Home extends Component {
     }
 
 
-    findUserByEmail = (event) =>{
+    findUserByEmail = (event) => {
         event.preventDefault()
         const allUsers = this.props.users || []
-        const userToFind = allUsers.find((user)=>{
+        const userToFind = allUsers.find((user) => {
             return (user.email === this.state.loggedUser.email)
         })
-        if(userToFind){
+        if (userToFind) {
             console.log(userToFind)
-            this.setState({loggedInstate: true, userId: userToFind._id})
+            this.setState({ loggedInstate: true, userId: userToFind._id })
         }
-        else{
-        
-        
-         alert('User not found, please create an account')
-}
+        else {
+
+
+            alert('User not found, please create an account')
+        }
     }
 
-        
 
-    
+
+
     render() {
-      if(this.state.loggedInstate){
-        return <Redirect to={`/users/${this.state.userId}`}/>
-      }
+        if (this.state.loggedInstate) {
+            return <Redirect to={`/users/${this.state.userId}`} />
+        }
 
 
 
 
         return (
             <div>
-             
-               <h1>Finally, you're here!</h1> 
-               <h1>Now let's getIshDone!</h1>
-           
-             
 
+                <center><h1>Finally, you're here!</h1>
+                    <h1>Now let's getItDone!</h1></center>
+                <center> <Img>
+                    <img src='https://media.giphy.com/media/rWJRwQVItkY4E/giphy.gif'></img>
+                </Img></center>
+                <div className="parentBox">
 
+                    <Main >
 
-             
-             <Container>
-                <Form inline onSubmit={this.findUserByEmail}>
-        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="exampleEmail" className="mr-sm-2">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" onChange={this.handleFindUser}/>
-        </FormGroup>
-        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="examplePassword" className="mr-sm-2">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" onChange={this.handleFindUser}  />
-        </FormGroup>
-        <Button>Submit</Button>
-      </Form> 
-     
-                <Link to ='users/new'> <Button
-               
-                >Create New User</Button></Link>
-               </Container> 
-           </div>
+                        <Form inline onSubmit={this.findUserByEmail}>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label for="exampleEmail" className="mr-sm-2">Email</Label>
+                                <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" onChange={this.handleFindUser} />
+                            </FormGroup>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label for="examplePassword" className="mr-sm-2">Password</Label>
+                                <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" onChange={this.handleFindUser} />
+                            </FormGroup>
+                            <Button>Submit</Button> <OR> <u>OR</u></OR>
+                            <Link to='users/new'> <Button id='butt'>Create New User</Button></Link>
+                        </Form>
+
+                    </Main>
+
+                </div>
+                
+            </div>
         );
     }
 }

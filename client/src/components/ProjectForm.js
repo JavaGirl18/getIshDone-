@@ -56,6 +56,7 @@ class ProjectForm extends Component {
                         placeholder="Due Date"
                         onChange={this.handleNewProjectChange} /></div>
                     <div><input type="submit" value="Create New Project" /></div>
+                    
                     {/* <div><input
                         name="role"
                         type="text"
