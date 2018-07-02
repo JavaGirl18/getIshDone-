@@ -31,7 +31,7 @@ class ShowUser extends Component {
       
         // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
         axios.delete(`/api/users/${userId}/projects/${projectId}`).then(() => {
-            this.getUser(userId)
+            this.getUser(projectId)
         })
     }
 

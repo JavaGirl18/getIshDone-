@@ -51,14 +51,26 @@ class Tasks extends Component {
         this.props.history.push('/users/:userId/projects/:id')
 
     }
+    getTask = (taskId) => {
+        const userId = this.props.match.params.userId
+        const projectId = this.props.match.params.projectId
+        axios
+            .get(`/api/users/${userId}/projects/${projectId}/tasks`)
+            .then(res => {
+                this.setState({ task: res.data })
+
+            })
+    }
 
     deleteTask = (taskId) => {
+       
         const userId = this.props.match.params.userId
         const projectId = this.props.match.params.projectId
       
-        console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
+        // // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
         axios.delete(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`).then(() => {
-            // this.props.getUser()
+       
+            this.getTask()
             console.log( this.props.getUsers,'getuserssss')
         })
       }
@@ -71,17 +83,19 @@ class Tasks extends Component {
            
             const userId = this.props.match.params.userId
             const projectId = this.props.match.params.projectId
-
-            // console.log("Calling API")
-            axios.get(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`)
-                .then(res => {
-                    // console.log("response from api", res.data)
-                    this.setState({ task: res.data,projectId: projectId, userId:userId })
-//  console.log('res', res.data)
-                })
-                .catch((err) => {
-                    console.error(err)
-                })
+this.getTask(taskId). then(()=>{
+    window.location.reload()
+})
+//             // console.log("Calling API")
+//             axios.get(`/api/users/${userId}/projects/${projectId}/tasks/${taskId}`)
+//                 .then(res => {
+//                     // console.log("response from api", res.data)
+//                     this.setState({ task: res.data,projectId: projectId, userId:userId })
+// //  console.log('res', res.data)
+//                 })
+//                 .catch((err) => {
+//                     console.error(err)
+//                 })
 
         }
 
