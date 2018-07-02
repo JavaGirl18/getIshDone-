@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import AllProjects from './AllProjects';
-import {Form, FormGroup} from 'reactstrap'
+import { Form, FormGroup, Label, Input } from 'reactstrap'
 import styled from 'styled-components'
 
 
-const Action=styled.div`
+
+const Action = styled.div`
 display:flex;
 justify-content: space-between;
 FormGroup{
@@ -14,7 +15,7 @@ FormGroup{
 }
 
 `
-const Name=styled.p`
+const Name = styled.p`
 font-weight: bold`
 
 
@@ -23,9 +24,10 @@ font-weight: bold`
 class ShowUser extends Component {
     state = {
         users: {},
-        editUser: false
+        editUser: false,
+        redirect: false
     }
-  getUser = (userId) => {
+    getUser = (userId) => {
         axios
             .get(`/api/users/${userId}`)
             .then(res => {
@@ -35,7 +37,7 @@ class ShowUser extends Component {
     }
     deleteProject = (projectId) => {
         const userId = this.props.match.params.id
-      
+
         // console.log('request sent to: ' + `/api/users/${userId}/projects/${projectId}`)
         axios.delete(`/api/users/${userId}/projects/${projectId}`).then((res) => {
             window.location.reload()
@@ -43,18 +45,13 @@ class ShowUser extends Component {
         })
     }
 
-    deleteUser = () => {
-        const userId = this.props.match.params.id
-        //make a delete request to our copy of the api using the params to identify specific idea
-        axios.delete(`/api/users/${userId}`).then((res) => {
-            this.getUser(userId)
-            // this.props.history.push(`/users/${userId}`)
-        })
-
+    deleteUser = (id) => {
+        this.props.deleteUser(id)
+        this.setState({ redirect: true })
     }
 
 
-  
+
 
     handleUpdate = (event) => {
         const copyOfState = { ...this.state.users }
@@ -101,12 +98,12 @@ class ShowUser extends Component {
         this
             .props
             .addNewUserToUsersList(this.state.newUser)
-                this.props.history.push('/users')
-            
+        this.props.history.push('/users')
+
     }
 
     componentDidMount() {
-        
+
         if (this.props.match.params) {
             const userId = this.props.match.params.id
             // console.log(userId)
@@ -116,76 +113,69 @@ class ShowUser extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            console.log('redirecting')
+            return <Redirect push to={'/'} />
+        }
         // console.log(this.state)
         const userName = this.state.users.name
         const email = this.state.users.email
         const role = this.state.users.role
 
-        const updateForm = (<Form onSubmit={this.submitUpdate}>
-        <FormGroup>
-            <input
-                type="text"
-                name="name"
-                maxLength="8"
-                placeholder="name"
-                value={this.state.users.name}
-                onChange={this.handleUpdate} />
-                <input type="submit" value="save" />
-           </FormGroup>
-           <FormGroup>
-            <input
-                type="text"
-                name="email"
-                maxLength="8"
-                placeholder="email"
-                value={this.state.users.email}
-                onChange={this.handleUpdate} />
-                <input type="submit" value="save" />
-                </FormGroup>
-                <FormGroup>
-            <input
-                type="text"
-                name="role"
-                maxLength="8"
-                placeholder="role"
-                value={this.state.users.role}
-                onChange={this.handleUpdate} />
-            <input type="submit" value="save" />
-            </FormGroup>
+ 
 
+
+        const updateForm = (<Form onSubmit={this.submitUpdate}>
+            <FormGroup>
+                <Label for="exampleEmail">Project Name</Label>
+                <Input type='text' name="name" placeholder="What's your name" value={this.state.users.name} onChange={this.handleUpdate} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="examplePassword">Email</Label>
+                <Input type="text" name="email" placeholder="email" value={this.state.users.email} onChange={this.handleUpdate} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="examplePassword">Role</Label>
+                <Input type="text" name="role" placeholder="role" value={this.state.users.role} onChange={this.handleUpdate} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="examplePassword">Password</Label>
+                <Input type="text" name="password" placeholder="password" onChange={this.handleNewProjectChange} />
+                <input type="submit" value="Update Profile" />
+            </FormGroup>
         </Form>)
 
 
 
         return (
-          <div>
+            <div>
 
 
-    
 
-              
-               
-              <center><h1>{userName}'s Projects </h1>
-              <Name>  Email:</Name><p>{email} </p>
-                <Name>Role:</Name> {role}</center> 
+
+
+
+                <center><h1>{userName}'s Projects </h1>
+                    <Name>  Email:</Name><p>{email} </p>
+                    <Name>Role:</Name> {role}</center>
 
 
 
                 <AllProjects
-                getUser= {()=>this.getUser(this.props.match.params.id)}
+                    getUser={() => this.getUser(this.props.match.params.id)}
                     users={this.state.users}
                     deleteProject={this.deleteProject} />
-                  <Action> 
-                <button onClick={()=> this.props.deleteUser(this.props.match.params.id)}>Delete User</button>
-                <Link to={`/users/${this.props.match.params.id}/projects/new`}> <button>Create New Project</button></Link>
-          
-                <button onClick={this.toggleButton}>Update Profile</button>
-               <Link to= '/'> <button>Sign Out</button></Link>
+                <Action>
+                    <button onClick={() => this.deleteUser(this.props.match.params.id)}>Delete User</button>
+                    <Link to={`/users/${this.props.match.params.id}/projects/new`}> <button>Create New Project</button></Link>
 
-              
-</Action> 
-  {this.state.editUser? updateForm: null} 
-         </div>
+                    <button onClick={this.toggleButton}>Update Profile</button>
+                    <Link to='/'> <button>Sign Out</button></Link>
+
+
+                </Action>
+                {this.state.editUser ? updateForm : null}
+            </div>
 
 
 

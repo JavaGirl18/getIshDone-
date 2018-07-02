@@ -7,13 +7,13 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 
 
-const Container = styled.div`
-border:solid;
-display:block;
-justify-content:center;
-margin-top:100px
-;
-`
+// const Container = styled.div`
+// border:solid;
+// display:block;
+// justify-content:center;
+// margin-top:100px
+// ;
+// `
 const Img = styled.div`
 height:200px;
 width:auto;
@@ -95,7 +95,7 @@ class Home extends Component {
                 <center><h1>Finally, you're here!</h1>
                     <h1>Now let's getItDone!</h1></center>
                 <center> <Img>
-                    <img src='https://media.giphy.com/media/rWJRwQVItkY4E/giphy.gif'></img>
+                    <img alt ='clock' src='https://media.giphy.com/media/rWJRwQVItkY4E/giphy.gif'></img>
                 </Img></center>
                 <div className="parentBox">
 

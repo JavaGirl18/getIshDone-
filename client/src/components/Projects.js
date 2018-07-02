@@ -142,7 +142,7 @@ class Projects extends Component {
                     value={this.state.project.endDate}
                     onChange={this.handleUpdate} />
             <FormGroup>
-                Status<select name="cars" o>
+                <select>
                     <option value="select">Select</option>
                     <option value="Not Started">Not Started</option>
                     <option value="In Progress">In Progress</option>
