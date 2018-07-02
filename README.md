@@ -29,7 +29,7 @@ Click to view User Story on Trello: <https://trello.com/b/ohHPqs17/getitdone-app
 
 
 # Wire Frame
-![Wireframe](public/images/wireframe.jpg)
+![Wireframe](public/images/Wireframe.jpg)
 
 
 # ERD
